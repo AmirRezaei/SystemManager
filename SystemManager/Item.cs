@@ -10,7 +10,7 @@
 
         public Item(string name, string path)
         {
-            Name = "[" + name + "]";
+            Name = name;
             Path = path;
         }
 
