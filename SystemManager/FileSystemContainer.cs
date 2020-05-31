@@ -4,6 +4,7 @@ using System.Linq;
 using System.IO;
 using System.Windows.Forms;
 using System;
+using System.Runtime.InteropServices;
 
 namespace SystemManager
 {
@@ -11,25 +12,28 @@ namespace SystemManager
     {
         public override ItemContainer Parent { get; }
 
-        public FileSystemContainer(string name, string directory) : base(name, directory)
+        public FileSystemContainer(string directory) : base(directory)
         {
-            if (new DirectoryInfo(directory).Parent == null)
+            DirectoryInfo directoryInfo = new DirectoryInfo(directory);
+            Name = "[" + directoryInfo.Name + "]"; // Name must also be set. The Name is used as in ListView for locating specific ListViewItems[name as key]. This is due to ListView uses ListViewItem.Name as key!
+
+            if (directoryInfo.Parent == null)
             {
                 Parent = this;
             }
             else
             {
                 DirectoryInfo parent = new DirectoryInfo(directory).Parent;
-                Parent = new FileSystemContainer(parent.Name, parent.FullName);
+                Parent = new FileSystemContainer(parent.FullName);
             }
         }
 
-        public override IEnumerable<ItemContainer> GetItemContainers()
+        public override IEnumerable<ItemContainer> GetItems()
         {
-            List<ItemContainer> itemContainer = new List<ItemContainer>();
+            List<ItemContainer> listItemContainer = new List<ItemContainer>();
 
             if (!IsRoot)
-                itemContainer.Add(new FileSystemContainer("..", Parent.Path));
+                listItemContainer.Add(new FileSystemContainer(Parent.Path) { Name = "[..]", IsDirectory = true });
 
             try
             {
@@ -37,7 +41,9 @@ namespace SystemManager
                 foreach (var directory in Directory.GetDirectories(Path))
                 {
                     DirectoryInfo directoryInfo = new DirectoryInfo(directory);
-                    FileSystemContainer fileSystemItemContainer = new FileSystemContainer(directoryInfo.Name, directoryInfo.FullName);
+                    FileSystemContainer fileSystemItemContainer = new FileSystemContainer(directoryInfo.FullName);
+                    fileSystemItemContainer.Name = "[" + directoryInfo.Name + "]";
+                    fileSystemItemContainer.IsDirectory = true;
                     fileSystemItemContainer.Attributes.Add("");
                     fileSystemItemContainer.Attributes.Add("<DIR>");
                     fileSystemItemContainer.Attributes.Add(directoryInfo.CreationTime.ToString());
@@ -49,29 +55,24 @@ namespace SystemManager
                     attribute += directoryInfo.Attributes.HasFlag(FileAttributes.System) ? "S" : "-";
 
                     fileSystemItemContainer.Attributes.Add(attribute);
-                    itemContainer.Add(fileSystemItemContainer);
+                    listItemContainer.Add(fileSystemItemContainer);
                 }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-            return itemContainer;
 
-        }
-
-        public override IEnumerable<Item> GetItems()
-        {
-            List<Item> items = new List<Item>();
             try
             {
-                //items.AddRange(Directory.GetDirectories(Path).Select(x => new FileSystemItem(new DirectoryInfo(x).Name, x)).ToArray());
                 foreach (string file in Directory.GetFiles(Path))
                 {
                     FileInfo fileInfo = new FileInfo(file);
-                    FileSystemItem fileSystemItem = new FileSystemItem(fileInfo.Name, fileInfo.FullName);
-                    fileSystemItem.Attributes.Add(fileInfo.Extension.ToString());
-                    fileSystemItem.Attributes.Add(fileInfo.Length.ToString());
+                    FileSystemContainer fileSystemItem = new FileSystemContainer(fileInfo.FullName);
+                    fileSystemItem.Name = fileInfo.Name;
+                    fileSystemItem.IsDirectory = false;
+                    fileSystemItem.Attributes.Add(fileInfo.Extension.TrimStart('.'));
+                    fileSystemItem.Attributes.Add(fileInfo.Length.ToHumanReadable());
                     fileSystemItem.Attributes.Add(fileInfo.CreationTime.ToString());
 
                     string attribute = "";
@@ -81,14 +82,14 @@ namespace SystemManager
                     attribute += fileInfo.Attributes.HasFlag(FileAttributes.System) ? "S" : "-";
                     fileSystemItem.Attributes.Add(attribute);
 
-                    items.Add(fileSystemItem);
+                    listItemContainer.Add(fileSystemItem);
                 }
             }
             catch (Exception ex)
             {
                 //MessageBox.Show(ex.Message);
             }
-            return items;
+            return listItemContainer;
         }
     }
 }

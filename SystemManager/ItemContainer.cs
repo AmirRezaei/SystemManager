@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SystemManager
 {
@@ -7,22 +8,19 @@ namespace SystemManager
     /// </summary>
     public abstract class ItemContainer
     {
+        public bool IsDirectory { get; set; }
         public List<string> Attributes = new List<string>();
         public bool IsRoot => Parent.Equals(this);
         public abstract ItemContainer Parent { get; }
-        public ItemContainer(string name, string path)
+        public ItemContainer(string path)
         {
-            Name = "[" + name + "]";
             Path = path;
         }
         public string Name { get; set; }
         public string Path { get; set; }
 
         private IEnumerable<ItemContainer> ItemContainers = new List<ItemContainer>();
-        private IEnumerable<Item> Items = new List<Item>();
-
-        public abstract IEnumerable<ItemContainer> GetItemContainers();
-        public abstract IEnumerable<Item> GetItems();
+        public abstract IEnumerable<ItemContainer> GetItems();
 
         public override string ToString()
         {

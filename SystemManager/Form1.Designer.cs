@@ -83,8 +83,8 @@
             this.splitContainer1.Panel2.Controls.Add(this.rightPathPanel);
             this.splitContainer1.Panel2.Controls.Add(this.rightVolumePanel);
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
-            this.splitContainer1.Size = new System.Drawing.Size(1799, 1100);
-            this.splitContainer1.SplitterDistance = 849;
+            this.splitContainer1.Size = new System.Drawing.Size(1084, 1252);
+            this.splitContainer1.SplitterDistance = 517;
             this.splitContainer1.SplitterIncrement = 10;
             this.splitContainer1.SplitterWidth = 20;
             this.splitContainer1.TabIndex = 0;
@@ -111,10 +111,9 @@
             listViewItem1});
             this.leftListView.LabelEdit = true;
             this.leftListView.LabelWrap = false;
-            this.leftListView.Location = new System.Drawing.Point(0, 86);
-            this.leftListView.MultiSelect = false;
+            this.leftListView.Location = new System.Drawing.Point(0, 87);
             this.leftListView.Name = "leftListView";
-            this.leftListView.Size = new System.Drawing.Size(849, 1014);
+            this.leftListView.Size = new System.Drawing.Size(517, 1165);
             this.leftListView.SmallImageList = this.imageList1;
             this.leftListView.TabIndex = 1;
             this.leftListView.UseCompatibleStateImageBehavior = false;
@@ -159,9 +158,9 @@
             // 
             this.leftPathPanel.Controls.Add(this.leftPathLabel);
             this.leftPathPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.leftPathPanel.Location = new System.Drawing.Point(0, 41);
+            this.leftPathPanel.Location = new System.Drawing.Point(0, 42);
             this.leftPathPanel.Name = "leftPathPanel";
-            this.leftPathPanel.Size = new System.Drawing.Size(849, 45);
+            this.leftPathPanel.Size = new System.Drawing.Size(517, 45);
             this.leftPathPanel.TabIndex = 0;
             // 
             // leftPathLabel
@@ -169,7 +168,7 @@
             this.leftPathLabel.AutoSize = true;
             this.leftPathLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftPathLabel.Location = new System.Drawing.Point(0, 0);
-            this.leftPathLabel.Margin = new System.Windows.Forms.Padding(4);
+            this.leftPathLabel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.leftPathLabel.Name = "leftPathLabel";
             this.leftPathLabel.Size = new System.Drawing.Size(112, 25);
             this.leftPathLabel.TabIndex = 0;
@@ -181,7 +180,7 @@
             this.leftVolumePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.leftVolumePanel.Location = new System.Drawing.Point(0, 0);
             this.leftVolumePanel.Name = "leftVolumePanel";
-            this.leftVolumePanel.Size = new System.Drawing.Size(849, 41);
+            this.leftVolumePanel.Size = new System.Drawing.Size(517, 42);
             this.leftVolumePanel.TabIndex = 0;
             // 
             // leftFlowLayoutPanel
@@ -189,7 +188,7 @@
             this.leftFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.leftFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.leftFlowLayoutPanel.Name = "leftFlowLayoutPanel";
-            this.leftFlowLayoutPanel.Size = new System.Drawing.Size(849, 41);
+            this.leftFlowLayoutPanel.Size = new System.Drawing.Size(517, 42);
             this.leftFlowLayoutPanel.TabIndex = 1;
             // 
             // rightListView
@@ -211,10 +210,9 @@
             listViewItem2});
             this.rightListView.LabelEdit = true;
             this.rightListView.LabelWrap = false;
-            this.rightListView.Location = new System.Drawing.Point(60, 86);
-            this.rightListView.MultiSelect = false;
+            this.rightListView.Location = new System.Drawing.Point(60, 87);
             this.rightListView.Name = "rightListView";
-            this.rightListView.Size = new System.Drawing.Size(870, 1014);
+            this.rightListView.Size = new System.Drawing.Size(487, 1165);
             this.rightListView.SmallImageList = this.imageList1;
             this.rightListView.TabIndex = 2;
             this.rightListView.UseCompatibleStateImageBehavior = false;
@@ -251,9 +249,9 @@
             // 
             this.rightPathPanel.Controls.Add(this.rightPathLabel);
             this.rightPathPanel.Dock = System.Windows.Forms.DockStyle.Top;
-            this.rightPathPanel.Location = new System.Drawing.Point(60, 41);
+            this.rightPathPanel.Location = new System.Drawing.Point(60, 42);
             this.rightPathPanel.Name = "rightPathPanel";
-            this.rightPathPanel.Size = new System.Drawing.Size(870, 45);
+            this.rightPathPanel.Size = new System.Drawing.Size(487, 45);
             this.rightPathPanel.TabIndex = 0;
             // 
             // rightPathLabel
@@ -261,7 +259,7 @@
             this.rightPathLabel.AutoSize = true;
             this.rightPathLabel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rightPathLabel.Location = new System.Drawing.Point(0, 0);
-            this.rightPathLabel.Margin = new System.Windows.Forms.Padding(4);
+            this.rightPathLabel.Margin = new System.Windows.Forms.Padding(4, 3, 4, 3);
             this.rightPathLabel.Name = "rightPathLabel";
             this.rightPathLabel.Size = new System.Drawing.Size(124, 25);
             this.rightPathLabel.TabIndex = 0;
@@ -273,7 +271,7 @@
             this.rightVolumePanel.Dock = System.Windows.Forms.DockStyle.Top;
             this.rightVolumePanel.Location = new System.Drawing.Point(60, 0);
             this.rightVolumePanel.Name = "rightVolumePanel";
-            this.rightVolumePanel.Size = new System.Drawing.Size(870, 41);
+            this.rightVolumePanel.Size = new System.Drawing.Size(487, 42);
             this.rightVolumePanel.TabIndex = 0;
             // 
             // rightFlowLayoutPanel
@@ -281,7 +279,7 @@
             this.rightFlowLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.rightFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.rightFlowLayoutPanel.Name = "rightFlowLayoutPanel";
-            this.rightFlowLayoutPanel.Size = new System.Drawing.Size(870, 41);
+            this.rightFlowLayoutPanel.Size = new System.Drawing.Size(487, 42);
             this.rightFlowLayoutPanel.TabIndex = 1;
             // 
             // panel3
@@ -289,14 +287,14 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(60, 1100);
+            this.panel3.Size = new System.Drawing.Size(60, 1252);
             this.panel3.TabIndex = 0;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1799, 1100);
+            this.ClientSize = new System.Drawing.Size(1084, 1252);
             this.Controls.Add(this.splitContainer1);
             this.Name = "Form1";
             this.Text = "Form1";

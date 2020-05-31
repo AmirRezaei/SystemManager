@@ -1,4 +1,3 @@
-C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\SystemManager\obj\Debug\netcoreapp3.1\SystemManager.csprojAssemblyReference.cache
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\SystemManager\obj\Debug\netcoreapp3.1\SystemManager.Form1.resources
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\SystemManager\obj\Debug\netcoreapp3.1\SystemManager.csproj.GenerateResource.cache
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\SystemManager\obj\Debug\netcoreapp3.1\SystemManager.AssemblyInfoInputs.cache

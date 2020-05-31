@@ -90,7 +90,7 @@ namespace SystemManager
                 }
             }
 
-            FileSystemContainer fileSystemContainter = new FileSystemContainer(@"C:\", @"C:\");
+            FileSystemContainer fileSystemContainter = new FileSystemContainer(@"C:\");
 
             //TODO: intrim solution just init both listviews
             CurrentListView = rightListView;
@@ -111,7 +111,8 @@ namespace SystemManager
                 case Keys.Enter:
                     {
                         ItemContainer itemContainer = listView.FocusedItem.Tag as ItemContainer;
-                        UpdateListBox(itemContainer);
+                        if (itemContainer.IsDirectory)
+                            UpdateListBox(itemContainer);
                         break;
                     }
                 case Keys.Back:
@@ -168,7 +169,7 @@ namespace SystemManager
         {
             var button = sender as Button;
             string volumePath = button.Text;
-            var fileSystemContainter = new FileSystemContainer(volumePath, volumePath);
+            var fileSystemContainter = new FileSystemContainer(volumePath);
 
             string senderSide = button.Tag as string;
             if (senderSide == SenderSide.Left.ToString())
@@ -186,39 +187,34 @@ namespace SystemManager
 
         private void UpdateListBox(ItemContainer newItemContainer)
         {
+            //if (newItemContainer.Name == null)
+            //    Debugger.Break();
+
             ItemContainer oldItemContainer = CurrentListView.Tag as ItemContainer;
             CurrentListView.Tag = newItemContainer;
 
             CurrentListView.Items.Clear();
 
-            foreach (ItemContainer itemContainer in newItemContainer.GetItemContainers())
+            //create a list of items and add them to current ListView
+            foreach (ItemContainer itemContainer in newItemContainer.GetItems())
             {
                 ListViewItem listViewItem = new ListViewItem(itemContainer.Name, 0)
                 {
                     Tag = itemContainer,
-                    Name = itemContainer.Name
+                    Text = itemContainer.Name,
+                    Name = itemContainer.Path  // Name is used as key in ListViewItem, we are using Path on each item since it's unique
                 };
+                listViewItem.ImageIndex = itemContainer.IsDirectory ? 0 : 1; // set correct image based on folder and file
+
                 //Add extra column info such as dir, size attr
                 foreach (var attribute in itemContainer.Attributes)
                 {
                     listViewItem.SubItems.Add(attribute);
                 }
+
                 CurrentListView.Items.Add(listViewItem);
             }
-            foreach (Item item in newItemContainer.GetItems())
-            {
-                ListViewItem listViewItem = new ListViewItem(item.Name, 1)
-                {
-                    Tag = item,
-                    Name = item.Name
-                };
-                //Add extra column info such as dir, size attr
-                foreach (var attribute in item.Attributes)
-                {
-                    listViewItem.SubItems.Add(attribute);
-                }
-                CurrentListView.Items.Add(listViewItem);
-            }
+
 
             //Focus on right ListViewItem
             ListViewItem focusListViewItem = CurrentListView.Items.Cast<ListViewItem>().Where(x => x.Text == oldItemContainer.Name).FirstOrDefault();
@@ -230,8 +226,8 @@ namespace SystemManager
             else
             {
                 // When we navigate back, we want to focus on right ListViewItem
-                CurrentListView.Items[oldItemContainer.Name].Selected = true;
-                CurrentListView.Items[oldItemContainer.Name].Focused = true;
+                CurrentListView.Items[oldItemContainer.Path].Selected = true;
+                CurrentListView.Items[oldItemContainer.Path].Focused = true;
             }
         }
         private void ListView_Resize(object sender, EventArgs e)
