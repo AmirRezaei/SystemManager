@@ -1,4 +1,6 @@
-﻿namespace SystemManager
+﻿using System;
+
+namespace SystemManager
 {
     public class FileSystemItem : Item
     {

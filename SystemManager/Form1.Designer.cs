@@ -37,6 +37,7 @@
             this.LeftColumnHeaderName = new System.Windows.Forms.ColumnHeader();
             this.LeftColumnHeaderExt = new System.Windows.Forms.ColumnHeader();
             this.LeftColumnHeaderSize = new System.Windows.Forms.ColumnHeader();
+            this.LeftColumnHeaderDate = new System.Windows.Forms.ColumnHeader();
             this.LeftColumnHeaderAttr = new System.Windows.Forms.ColumnHeader();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.leftPathPanel = new System.Windows.Forms.Panel();
@@ -47,6 +48,7 @@
             this.RightColumnHeaderName = new System.Windows.Forms.ColumnHeader();
             this.RightColumnHeaderExt = new System.Windows.Forms.ColumnHeader();
             this.RightColumnHeaderSize = new System.Windows.Forms.ColumnHeader();
+            this.RightColumnHeaderDate = new System.Windows.Forms.ColumnHeader();
             this.RightColumnHeaderAttr = new System.Windows.Forms.ColumnHeader();
             this.rightPathPanel = new System.Windows.Forms.Panel();
             this.rightPathLabel = new System.Windows.Forms.Label();
@@ -91,22 +93,30 @@
             // 
             // leftListView
             // 
+            this.leftListView.Activation = System.Windows.Forms.ItemActivation.OneClick;
+            this.leftListView.CheckBoxes = true;
             this.leftListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.LeftColumnHeaderName,
             this.LeftColumnHeaderExt,
             this.LeftColumnHeaderSize,
+            this.LeftColumnHeaderDate,
             this.LeftColumnHeaderAttr});
             this.leftListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.leftListView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.leftListView.FullRowSelect = true;
             this.leftListView.GridLines = true;
             this.leftListView.HideSelection = false;
+            listViewItem1.StateImageIndex = 0;
             this.leftListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem1});
+            this.leftListView.LabelEdit = true;
+            this.leftListView.LabelWrap = false;
             this.leftListView.Location = new System.Drawing.Point(0, 86);
+            this.leftListView.MultiSelect = false;
             this.leftListView.Name = "leftListView";
             this.leftListView.Size = new System.Drawing.Size(849, 1014);
             this.leftListView.SmallImageList = this.imageList1;
-            this.leftListView.TabIndex = 5;
+            this.leftListView.TabIndex = 1;
             this.leftListView.UseCompatibleStateImageBehavior = false;
             this.leftListView.View = System.Windows.Forms.View.Details;
             // 
@@ -114,7 +124,7 @@
             // 
             this.LeftColumnHeaderName.Name = "LeftColumnHeaderName";
             this.LeftColumnHeaderName.Text = "Name";
-            this.LeftColumnHeaderName.Width = 600;
+            this.LeftColumnHeaderName.Width = 500;
             // 
             // LeftColumnHeaderExt
             // 
@@ -125,6 +135,12 @@
             // 
             this.LeftColumnHeaderSize.Name = "LeftColumnHeaderSize";
             this.LeftColumnHeaderSize.Text = "Size";
+            // 
+            // LeftColumnHeaderDate
+            // 
+            this.LeftColumnHeaderDate.Name = "LeftColumnHeaderDate";
+            this.LeftColumnHeaderDate.Text = "Date";
+            this.LeftColumnHeaderDate.Width = 160;
             // 
             // LeftColumnHeaderAttr
             // 
@@ -178,18 +194,25 @@
             // 
             // rightListView
             // 
+            this.rightListView.CheckBoxes = true;
             this.rightListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.RightColumnHeaderName,
             this.RightColumnHeaderExt,
             this.RightColumnHeaderSize,
+            this.RightColumnHeaderDate,
             this.RightColumnHeaderAttr});
             this.rightListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rightListView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point);
             this.rightListView.FullRowSelect = true;
             this.rightListView.GridLines = true;
             this.rightListView.HideSelection = false;
+            listViewItem2.StateImageIndex = 0;
             this.rightListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
             listViewItem2});
+            this.rightListView.LabelEdit = true;
+            this.rightListView.LabelWrap = false;
             this.rightListView.Location = new System.Drawing.Point(60, 86);
+            this.rightListView.MultiSelect = false;
             this.rightListView.Name = "rightListView";
             this.rightListView.Size = new System.Drawing.Size(870, 1014);
             this.rightListView.SmallImageList = this.imageList1;
@@ -201,7 +224,7 @@
             // 
             this.RightColumnHeaderName.Name = "RightColumnHeaderName";
             this.RightColumnHeaderName.Text = "Name";
-            this.RightColumnHeaderName.Width = 600;
+            this.RightColumnHeaderName.Width = 500;
             // 
             // RightColumnHeaderExt
             // 
@@ -212,6 +235,12 @@
             // 
             this.RightColumnHeaderSize.Name = "RightColumnHeaderSize";
             this.RightColumnHeaderSize.Text = "Size";
+            // 
+            // RightColumnHeaderDate
+            // 
+            this.RightColumnHeaderDate.Name = "RightColumnHeaderDate";
+            this.RightColumnHeaderDate.Text = "Date";
+            this.RightColumnHeaderDate.Width = 160;
             // 
             // RightColumnHeaderAttr
             // 
@@ -309,6 +338,8 @@
         private System.Windows.Forms.Label rightPathLabel;
         private System.Windows.Forms.FlowLayoutPanel leftFlowLayoutPanel;
         private System.Windows.Forms.FlowLayoutPanel rightFlowLayoutPanel;
+        private System.Windows.Forms.ColumnHeader LeftColumnHeaderDate;
+        private System.Windows.Forms.ColumnHeader RightColumnHeaderDate;
     }
 }
 

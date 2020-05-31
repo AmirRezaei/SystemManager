@@ -7,6 +7,7 @@ namespace SystemManager
     /// </summary>
     public abstract class ItemContainer
     {
+        public List<string> Attributes = new List<string>();
         public bool IsRoot => Parent.Equals(this);
         public abstract ItemContainer Parent { get; }
         public ItemContainer(string name, string path)

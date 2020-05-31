@@ -8,6 +8,7 @@ using System.IO;
 using System.Collections;
 using System.Transactions;
 using System.Linq;
+using System.Diagnostics;
 
 namespace SystemManager
 {
@@ -27,16 +28,16 @@ namespace SystemManager
             leftListView.MouseDoubleClick += new MouseEventHandler(ListView_MouseDoubleClick);
             leftListView.Resize += new EventHandler(ListView_Resize);
             leftListView.KeyDown += new KeyEventHandler(ListView_KeyDown);
+            leftListView.GotFocus += ListView_GotFocus;
+            leftListView.MouseDown += new MouseEventHandler(ListView_MouseDown);
 
-            rightListView.MouseDoubleClick += new MouseEventHandler(ListView_MouseDoubleClick);
             rightListView.Resize += new EventHandler(ListView_Resize);
             rightListView.KeyDown += new KeyEventHandler(ListView_KeyDown);
             rightListView.GotFocus += ListView_GotFocus;
-
-            leftListView.MouseDown += new MouseEventHandler(ListView_MouseDown);
-            leftListView.KeyPress += new KeyPressEventHandler(LeftlistView_KeyPress);
-            leftListView.ItemActivate += new EventHandler(ListView_ItemActivate);
-            leftListView.GotFocus += ListView_GotFocus;
+            rightListView.MouseDown += new MouseEventHandler(ListView_MouseDown);
+            //rightListView.MouseDoubleClick += new MouseEventHandler(ListView_MouseDoubleClick);
+            //leftListView.KeyPress += new KeyPressEventHandler(LeftlistView_KeyPress);
+            //leftListView.ItemActivate += new EventHandler(ListView_ItemActivate);
         }
 
         private void ListView_GotFocus(object sender, EventArgs e)
@@ -149,18 +150,18 @@ namespace SystemManager
 
         private void ListView_MouseDown(object sender, MouseEventArgs e)
         {
-            //ListViewHitTestInfo info = leftlistView.HitTest(e.X, e.Y);
-            //ListViewItem item = info.Item;
+            if (e.Button == MouseButtons.Right)
+            {
+                Debug.Write(e.Button);
+                ListViewHitTestInfo info = CurrentListView.HitTest(e.X, e.Y);
+                ListViewItem item = info.Item;
 
-            //if (item != null)
-            //{
-            //    this.textBox1.Text = item.Text;
-            //}
-            //else
-            //{
-            //    this.listView1.SelectedItems.Clear();
-            //    this.textBox1.Text = "No Item is Selected";
-            //}
+                if (item != null)
+                {
+                    item.Checked = !item.Checked;
+                    item.Selected = item.Checked;
+                }
+            }
         }
 
         private void VolumeButtom_Click(object sender, EventArgs e)
@@ -197,6 +198,11 @@ namespace SystemManager
                     Tag = itemContainer,
                     Name = itemContainer.Name
                 };
+                //Add extra column info such as dir, size attr
+                foreach (var attribute in itemContainer.Attributes)
+                {
+                    listViewItem.SubItems.Add(attribute);
+                }
                 CurrentListView.Items.Add(listViewItem);
             }
             foreach (Item item in newItemContainer.GetItems())
@@ -206,7 +212,11 @@ namespace SystemManager
                     Tag = item,
                     Name = item.Name
                 };
-
+                //Add extra column info such as dir, size attr
+                foreach (var attribute in item.Attributes)
+                {
+                    listViewItem.SubItems.Add(attribute);
+                }
                 CurrentListView.Items.Add(listViewItem);
             }
 
@@ -228,10 +238,11 @@ namespace SystemManager
         {
             ListView listview = sender as ListView;
             int x = listview.Width / 100;
-            listview.Columns[0].Width = x * 80;
+            listview.Columns[0].Width = x * 70;
             listview.Columns[1].Width = x * 5;
-            listview.Columns[2].Width = x * 5;
-            listview.Columns[3].Width = x * 5;
+            listview.Columns[2].Width = x * 10;
+            listview.Columns[3].Width = x * 10;
+            listview.Columns[4].Width = x * 5;
         }
     }
 }
