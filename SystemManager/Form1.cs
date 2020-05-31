@@ -9,6 +9,8 @@ using System.Collections;
 using System.Transactions;
 using System.Linq;
 using System.Diagnostics;
+using System.Collections.Generic;
+using System.Collections.Immutable;
 
 namespace SystemManager
 {
@@ -30,6 +32,7 @@ namespace SystemManager
             leftListView.KeyDown += new KeyEventHandler(ListView_KeyDown);
             leftListView.GotFocus += ListView_GotFocus;
             leftListView.MouseDown += new MouseEventHandler(ListView_MouseDown);
+
 
             rightListView.Resize += new EventHandler(ListView_Resize);
             rightListView.KeyDown += new KeyEventHandler(ListView_KeyDown);
@@ -118,15 +121,28 @@ namespace SystemManager
                 case Keys.Back:
                     {
                         ItemContainer itemContainer = listView.Tag as ItemContainer;
-
                         //No need to update if we already are in root folder.
                         if (!itemContainer.IsRoot)
                         {
                             UpdateListBox(itemContainer.Parent);
                         }
-
                         break;
                     }
+            }
+
+            if (e.KeyCode == Keys.Control | e.KeyCode == Keys.A)
+            {
+                ItemContainer itemContainer = listView.Tag as ItemContainer;
+
+                // When at root level select all items. since no parent item "[..]" exist.
+                if (itemContainer.IsRoot)
+                {
+                    CurrentListView.Items.Cast<ListViewItem>().All(x => x.Checked = true);
+                }
+                else
+                {
+                    CurrentListView.Items.Cast<ListViewItem>().Skip(1).All(x => x.Checked = true);
+                }
             }
         }
 
@@ -187,12 +203,10 @@ namespace SystemManager
 
         private void UpdateListBox(ItemContainer newItemContainer)
         {
-            //if (newItemContainer.Name == null)
-            //    Debugger.Break();
-
             ItemContainer oldItemContainer = CurrentListView.Tag as ItemContainer;
             CurrentListView.Tag = newItemContainer;
 
+            CurrentListView.BeginUpdate();
             CurrentListView.Items.Clear();
 
             //create a list of items and add them to current ListView
@@ -215,7 +229,6 @@ namespace SystemManager
                 CurrentListView.Items.Add(listViewItem);
             }
 
-
             //Focus on right ListViewItem
             ListViewItem focusListViewItem = CurrentListView.Items.Cast<ListViewItem>().Where(x => x.Text == oldItemContainer.Name).FirstOrDefault();
             if (focusListViewItem == null)
@@ -229,6 +242,7 @@ namespace SystemManager
                 CurrentListView.Items[oldItemContainer.Path].Selected = true;
                 CurrentListView.Items[oldItemContainer.Path].Focused = true;
             }
+            CurrentListView.EndUpdate();
         }
         private void ListView_Resize(object sender, EventArgs e)
         {
