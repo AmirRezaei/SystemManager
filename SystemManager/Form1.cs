@@ -41,6 +41,8 @@ namespace SystemManager
             //rightListView.MouseDoubleClick += new MouseEventHandler(ListView_MouseDoubleClick);
             //leftListView.KeyPress += new KeyPressEventHandler(LeftlistView_KeyPress);
             //leftListView.ItemActivate += new EventHandler(ListView_ItemActivate);
+
+            this.WindowState = FormWindowState.Maximized;
         }
 
         private void ListView_GotFocus(object sender, EventArgs e)
@@ -130,7 +132,8 @@ namespace SystemManager
                     }
             }
 
-            if (e.KeyCode == Keys.Control | e.KeyCode == Keys.A)
+            //Select All items
+            if ((e.KeyCode == Keys.Control | e.KeyCode == Keys.A) || (e.KeyCode == Keys.Control | e.KeyCode == Keys.Add))
             {
                 ItemContainer itemContainer = listView.Tag as ItemContainer;
 
@@ -142,6 +145,22 @@ namespace SystemManager
                 else
                 {
                     CurrentListView.Items.Cast<ListViewItem>().Skip(1).All(x => x.Checked = true);
+                }
+            }
+
+            //Deselect all items
+            if (e.KeyCode == Keys.Control | e.KeyCode == Keys.Subtract)
+            {
+                ItemContainer itemContainer = listView.Tag as ItemContainer;
+
+                // When at root level select all items. since no parent item "[..]" exist.
+                if (itemContainer.IsRoot)
+                {
+                    CurrentListView.Items.Cast<ListViewItem>().All(x => x.Checked = false);
+                }
+                else
+                {
+                    CurrentListView.Items.Cast<ListViewItem>().Skip(1).All(x => x.Checked = false);
                 }
             }
         }
@@ -156,7 +175,8 @@ namespace SystemManager
             if (item != null)
             {
                 ItemContainer itemContainer = item.Tag as ItemContainer;
-                UpdateListBox(itemContainer);
+                if (itemContainer.IsDirectory)
+                    UpdateListBox(itemContainer);
             }
             else
             {
