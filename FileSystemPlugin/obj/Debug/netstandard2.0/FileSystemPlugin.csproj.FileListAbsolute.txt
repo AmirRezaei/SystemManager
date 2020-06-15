@@ -1,0 +1,14 @@
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\FileSystemPlugin\bin\Debug\netstandard2.0\FileSystemPlugin.deps.json
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\FileSystemPlugin\bin\Debug\netstandard2.0\FileSystemPlugin.dll
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\FileSystemPlugin\bin\Debug\netstandard2.0\PluginInterface.dll
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\FileSystemPlugin\bin\Debug\netstandard2.0\PluginInterface.pdb
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\FileSystemPlugin\obj\Debug\netstandard2.0\FileSystemPlugin.csprojAssemblyReference.cache
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\FileSystemPlugin\obj\Debug\netstandard2.0\FileSystemPlugin.AssemblyInfoInputs.cache
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\FileSystemPlugin\obj\Debug\netstandard2.0\FileSystemPlugin.AssemblyInfo.cs
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\FileSystemPlugin\obj\Debug\netstandard2.0\FileSystemPlugin.csproj.CopyComplete
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\FileSystemPlugin\bin\Debug\netstandard2.0\FileSystemPlugin.pdb
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\FileSystemPlugin\bin\Debug\netstandard2.0\Helper.dll
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\FileSystemPlugin\bin\Debug\netstandard2.0\Helper.pdb
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\FileSystemPlugin\obj\Debug\netstandard2.0\FileSystemPlugin.csproj.CoreCompileInputs.cache
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\FileSystemPlugin\obj\Debug\netstandard2.0\FileSystemPlugin.dll
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\FileSystemPlugin\obj\Debug\netstandard2.0\FileSystemPlugin.pdb

@@ -1,0 +1,12 @@
+{
+  "version": 2,
+  "dgSpecHash": "DMeOvTbrcjPiaN1ico9NEU/nIxG+zEF/YUAzDYfRuu5hDWSw85sXcKN++ycFL1ikc1Tr8Yl/mztLzGT+XeZxDw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\itkom\\Documents\\01 - Dev\\GitHub\\SystemManager\\FileSystemPlugin\\FileSystemPlugin.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\itkom\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\itkom\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512",
+    "C:\\Users\\itkom\\.nuget\\packages\\nlog\\4.7.2\\nlog.4.7.2.nupkg.sha512"
+  ],
+  "logs": []
+}

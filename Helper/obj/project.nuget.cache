@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "yzoDS3btX89AyyLWWGUv3kehTV0C47aWlS9LWKjxGdX4kUCMo4OWN2eIax7aaYqmGlmOco85YILvze3QujlvuQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\itkom\\Documents\\01 - Dev\\GitHub\\SystemManager\\Helper\\Helper.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\itkom\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\itkom\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

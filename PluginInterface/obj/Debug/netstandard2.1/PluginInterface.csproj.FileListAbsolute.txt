@@ -1,0 +1,8 @@
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\PluginInterface\bin\Debug\netstandard2.1\PluginInterface.deps.json
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\PluginInterface\bin\Debug\netstandard2.1\PluginInterface.dll
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\PluginInterface\bin\Debug\netstandard2.1\PluginInterface.pdb
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\PluginInterface\obj\Debug\netstandard2.1\PluginInterface.AssemblyInfoInputs.cache
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\PluginInterface\obj\Debug\netstandard2.1\PluginInterface.AssemblyInfo.cs
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\PluginInterface\obj\Debug\netstandard2.1\PluginInterface.csproj.CoreCompileInputs.cache
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\PluginInterface\obj\Debug\netstandard2.1\PluginInterface.dll
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\PluginInterface\obj\Debug\netstandard2.1\PluginInterface.pdb
