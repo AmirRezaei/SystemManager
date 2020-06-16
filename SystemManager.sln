@@ -11,9 +11,11 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ServicePlugin", "ServicePlu
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ProcessPlugin", "ProcessPlugin\ProcessPlugin.csproj", "{D9DF7DD3-D35A-4426-AF17-68E5D5FC0123}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FileSystemPlugin", "FileSystemPlugin\FileSystemPlugin.csproj", "{63F626B7-9363-4CDA-9B13-0B877591CE0C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileSystemPlugin", "FileSystemPlugin\FileSystemPlugin.csproj", "{63F626B7-9363-4CDA-9B13-0B877591CE0C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Helper", "Helper\Helper.csproj", "{CC871E43-5214-4950-BC55-04F4BF240455}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helper", "Helper\Helper.csproj", "{B3DEBDBC-5FDA-463F-A7D8-B02B89EF9A82}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaMetaData", "MediaMetaData\MediaMetaData.csproj", "{BA45C56E-C811-4A25-BE4F-631179F167A4}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,10 +43,14 @@ Global
 		{63F626B7-9363-4CDA-9B13-0B877591CE0C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{63F626B7-9363-4CDA-9B13-0B877591CE0C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{63F626B7-9363-4CDA-9B13-0B877591CE0C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CC871E43-5214-4950-BC55-04F4BF240455}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CC871E43-5214-4950-BC55-04F4BF240455}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CC871E43-5214-4950-BC55-04F4BF240455}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CC871E43-5214-4950-BC55-04F4BF240455}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3DEBDBC-5FDA-463F-A7D8-B02B89EF9A82}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3DEBDBC-5FDA-463F-A7D8-B02B89EF9A82}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3DEBDBC-5FDA-463F-A7D8-B02B89EF9A82}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3DEBDBC-5FDA-463F-A7D8-B02B89EF9A82}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BA45C56E-C811-4A25-BE4F-631179F167A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BA45C56E-C811-4A25-BE4F-631179F167A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BA45C56E-C811-4A25-BE4F-631179F167A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BA45C56E-C811-4A25-BE4F-631179F167A4}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

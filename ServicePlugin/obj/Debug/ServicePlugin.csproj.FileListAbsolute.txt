@@ -1,10 +1,12 @@
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\bin\Debug\ServicePlugin.dll
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\bin\Debug\ServicePlugin.pdb
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\bin\Debug\NLog.dll
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\bin\Debug\PluginInterface.dll
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\bin\Debug\System.Diagnostics.EventLog.dll
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\bin\Debug\System.Security.Principal.Windows.dll
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\bin\Debug\System.ServiceProcess.ServiceController.dll
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\bin\Debug\PluginInterface.pdb
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\bin\Debug\NLog.xml
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\bin\Debug\System.Diagnostics.EventLog.xml
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\bin\Debug\System.Security.Principal.Windows.xml
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\bin\Debug\System.ServiceProcess.ServiceController.xml
@@ -13,5 +15,3 @@ C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\obj\Debug\S
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\obj\Debug\ServicePlugin.csproj.CopyComplete
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\obj\Debug\ServicePlugin.dll
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\obj\Debug\ServicePlugin.pdb
-C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\bin\Debug\NLog.dll
-C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ServicePlugin\bin\Debug\NLog.xml

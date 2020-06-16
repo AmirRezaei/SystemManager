@@ -38,23 +38,29 @@ namespace SM
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabPage1 = new System.Windows.Forms.TabPage();
             this.leftListView = new SM.Controls.ListViewEx();
             this.LeftColumnHeaderName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LeftColumnHeaderExt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LeftColumnHeaderSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LeftColumnHeaderDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.LeftColumnHeaderAttr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage2 = new System.Windows.Forms.TabPage();
             this.leftPathPanel = new System.Windows.Forms.Panel();
             this.leftPathLabel = new System.Windows.Forms.Label();
             this.leftVolumePanel = new System.Windows.Forms.Panel();
             this.leftFlowLayoutPanel = new System.Windows.Forms.FlowLayoutPanel();
             this.textBoxStatus1 = new System.Windows.Forms.TextBox();
+            this.tabControl2 = new System.Windows.Forms.TabControl();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
             this.rightListView = new SM.Controls.ListViewEx();
             this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.tabPage4 = new System.Windows.Forms.TabPage();
             this.rightPathPanel = new System.Windows.Forms.Panel();
             this.rightPathLabel = new System.Windows.Forms.Label();
             this.rightVolumePanel = new System.Windows.Forms.Panel();
@@ -65,6 +71,7 @@ namespace SM
             this.buttonService = new System.Windows.Forms.Button();
             this.buttonProcess = new System.Windows.Forms.Button();
             this.logRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.buttonMedia = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -73,8 +80,12 @@ namespace SM
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.tabControl1.SuspendLayout();
+            this.tabPage1.SuspendLayout();
             this.leftPathPanel.SuspendLayout();
             this.leftVolumePanel.SuspendLayout();
+            this.tabControl2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.rightPathPanel.SuspendLayout();
             this.rightVolumePanel.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -103,8 +114,8 @@ namespace SM
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.logRichTextBox);
-            this.splitContainer2.Size = new System.Drawing.Size(1978, 1292);
-            this.splitContainer2.SplitterDistance = 1111;
+            this.splitContainer2.Size = new System.Drawing.Size(1732, 1061);
+            this.splitContainer2.SplitterDistance = 912;
             this.splitContainer2.SplitterWidth = 2;
             this.splitContainer2.TabIndex = 0;
             this.splitContainer2.TabStop = false;
@@ -119,25 +130,47 @@ namespace SM
             // 
             // splitContainer1.Panel1
             // 
-            this.splitContainer1.Panel1.Controls.Add(this.leftListView);
+            this.splitContainer1.Panel1.Controls.Add(this.tabControl1);
             this.splitContainer1.Panel1.Controls.Add(this.leftPathPanel);
             this.splitContainer1.Panel1.Controls.Add(this.leftVolumePanel);
             this.splitContainer1.Panel1.Controls.Add(this.textBoxStatus1);
             // 
             // splitContainer1.Panel2
             // 
-            this.splitContainer1.Panel2.Controls.Add(this.rightListView);
+            this.splitContainer1.Panel2.Controls.Add(this.tabControl2);
             this.splitContainer1.Panel2.Controls.Add(this.rightPathPanel);
             this.splitContainer1.Panel2.Controls.Add(this.rightVolumePanel);
             this.splitContainer1.Panel2.Controls.Add(this.textBoxStatus2);
             this.splitContainer1.Panel2.Controls.Add(this.panel3);
-            this.splitContainer1.Size = new System.Drawing.Size(1978, 1111);
-            this.splitContainer1.SplitterDistance = 949;
+            this.splitContainer1.Size = new System.Drawing.Size(1732, 912);
+            this.splitContainer1.SplitterDistance = 830;
             this.splitContainer1.SplitterIncrement = 40;
             this.splitContainer1.SplitterWidth = 10;
             this.splitContainer1.TabIndex = 0;
             this.splitContainer1.TabStop = false;
             this.splitContainer1.Text = "splitContainer1";
+            // 
+            // tabControl1
+            // 
+            this.tabControl1.Controls.Add(this.tabPage1);
+            this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl1.Location = new System.Drawing.Point(0, 70);
+            this.tabControl1.Name = "tabControl1";
+            this.tabControl1.SelectedIndex = 0;
+            this.tabControl1.Size = new System.Drawing.Size(830, 808);
+            this.tabControl1.TabIndex = 1;
+            // 
+            // tabPage1
+            // 
+            this.tabPage1.Controls.Add(this.leftListView);
+            this.tabPage1.Location = new System.Drawing.Point(4, 29);
+            this.tabPage1.Name = "tabPage1";
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage1.Size = new System.Drawing.Size(822, 775);
+            this.tabPage1.TabIndex = 0;
+            this.tabPage1.Text = "tabPage1";
+            this.tabPage1.UseVisualStyleBackColor = true;
             // 
             // leftListView
             // 
@@ -158,13 +191,13 @@ namespace SM
             listViewItem1});
             this.leftListView.LabelEdit = true;
             this.leftListView.LabelWrap = false;
-            this.leftListView.Location = new System.Drawing.Point(0, 70);
+            this.leftListView.Location = new System.Drawing.Point(3, 3);
             this.leftListView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.leftListView.Name = "leftListView";
-            this.leftListView.Size = new System.Drawing.Size(949, 1007);
+            this.leftListView.Size = new System.Drawing.Size(816, 769);
             this.leftListView.SmallImageList = this.imageList1;
             this.leftListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.leftListView.TabIndex = 1;
+            this.leftListView.TabIndex = 2;
             this.leftListView.UseCompatibleStateImageBehavior = false;
             this.leftListView.View = System.Windows.Forms.View.Details;
             // 
@@ -198,6 +231,16 @@ namespace SM
             this.LeftColumnHeaderAttr.Text = "Attr";
             this.LeftColumnHeaderAttr.Width = 45;
             // 
+            // tabPage2
+            // 
+            this.tabPage2.Location = new System.Drawing.Point(4, 29);
+            this.tabPage2.Name = "tabPage2";
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage2.Size = new System.Drawing.Size(822, 775);
+            this.tabPage2.TabIndex = 1;
+            this.tabPage2.Text = "tabPage2";
+            this.tabPage2.UseVisualStyleBackColor = true;
+            // 
             // leftPathPanel
             // 
             this.leftPathPanel.Controls.Add(this.leftPathLabel);
@@ -205,7 +248,7 @@ namespace SM
             this.leftPathPanel.Location = new System.Drawing.Point(0, 34);
             this.leftPathPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.leftPathPanel.Name = "leftPathPanel";
-            this.leftPathPanel.Size = new System.Drawing.Size(949, 36);
+            this.leftPathPanel.Size = new System.Drawing.Size(830, 36);
             this.leftPathPanel.TabIndex = 0;
             // 
             // leftPathLabel
@@ -226,7 +269,7 @@ namespace SM
             this.leftVolumePanel.Location = new System.Drawing.Point(0, 0);
             this.leftVolumePanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.leftVolumePanel.Name = "leftVolumePanel";
-            this.leftVolumePanel.Size = new System.Drawing.Size(949, 34);
+            this.leftVolumePanel.Size = new System.Drawing.Size(830, 34);
             this.leftVolumePanel.TabIndex = 0;
             // 
             // leftFlowLayoutPanel
@@ -235,20 +278,42 @@ namespace SM
             this.leftFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.leftFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.leftFlowLayoutPanel.Name = "leftFlowLayoutPanel";
-            this.leftFlowLayoutPanel.Size = new System.Drawing.Size(949, 34);
+            this.leftFlowLayoutPanel.Size = new System.Drawing.Size(830, 34);
             this.leftFlowLayoutPanel.TabIndex = 1;
             // 
             // textBoxStatus1
             // 
             this.textBoxStatus1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBoxStatus1.Location = new System.Drawing.Point(0, 1077);
+            this.textBoxStatus1.Location = new System.Drawing.Point(0, 878);
             this.textBoxStatus1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxStatus1.Multiline = true;
             this.textBoxStatus1.Name = "textBoxStatus1";
             this.textBoxStatus1.ReadOnly = true;
-            this.textBoxStatus1.Size = new System.Drawing.Size(949, 34);
+            this.textBoxStatus1.Size = new System.Drawing.Size(830, 34);
             this.textBoxStatus1.TabIndex = 0;
             this.textBoxStatus1.TabStop = false;
+            // 
+            // tabControl2
+            // 
+            this.tabControl2.Controls.Add(this.tabPage3);
+            this.tabControl2.Controls.Add(this.tabPage4);
+            this.tabControl2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControl2.Location = new System.Drawing.Point(60, 70);
+            this.tabControl2.Name = "tabControl2";
+            this.tabControl2.SelectedIndex = 0;
+            this.tabControl2.Size = new System.Drawing.Size(832, 808);
+            this.tabControl2.TabIndex = 1;
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.rightListView);
+            this.tabPage3.Location = new System.Drawing.Point(4, 29);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(824, 775);
+            this.tabPage3.TabIndex = 0;
+            this.tabPage3.Text = "tabPage3";
+            this.tabPage3.UseVisualStyleBackColor = true;
             // 
             // rightListView
             // 
@@ -266,12 +331,12 @@ namespace SM
             this.rightListView.HideSelection = false;
             this.rightListView.LabelEdit = true;
             this.rightListView.LabelWrap = false;
-            this.rightListView.Location = new System.Drawing.Point(60, 70);
+            this.rightListView.Location = new System.Drawing.Point(3, 3);
             this.rightListView.Name = "rightListView";
-            this.rightListView.Size = new System.Drawing.Size(959, 1007);
+            this.rightListView.Size = new System.Drawing.Size(818, 769);
             this.rightListView.SmallImageList = this.imageList1;
             this.rightListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.rightListView.TabIndex = 2;
+            this.rightListView.TabIndex = 3;
             this.rightListView.UseCompatibleStateImageBehavior = false;
             this.rightListView.View = System.Windows.Forms.View.Details;
             // 
@@ -300,6 +365,16 @@ namespace SM
             this.columnHeader5.Text = "Attr";
             this.columnHeader5.Width = 45;
             // 
+            // tabPage4
+            // 
+            this.tabPage4.Location = new System.Drawing.Point(4, 29);
+            this.tabPage4.Name = "tabPage4";
+            this.tabPage4.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage4.Size = new System.Drawing.Size(824, 775);
+            this.tabPage4.TabIndex = 1;
+            this.tabPage4.Text = "tabPage4";
+            this.tabPage4.UseVisualStyleBackColor = true;
+            // 
             // rightPathPanel
             // 
             this.rightPathPanel.Controls.Add(this.rightPathLabel);
@@ -307,7 +382,7 @@ namespace SM
             this.rightPathPanel.Location = new System.Drawing.Point(60, 34);
             this.rightPathPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rightPathPanel.Name = "rightPathPanel";
-            this.rightPathPanel.Size = new System.Drawing.Size(959, 36);
+            this.rightPathPanel.Size = new System.Drawing.Size(832, 36);
             this.rightPathPanel.TabIndex = 0;
             // 
             // rightPathLabel
@@ -328,7 +403,7 @@ namespace SM
             this.rightVolumePanel.Location = new System.Drawing.Point(60, 0);
             this.rightVolumePanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rightVolumePanel.Name = "rightVolumePanel";
-            this.rightVolumePanel.Size = new System.Drawing.Size(959, 34);
+            this.rightVolumePanel.Size = new System.Drawing.Size(832, 34);
             this.rightVolumePanel.TabIndex = 0;
             // 
             // rightFlowLayoutPanel
@@ -337,18 +412,18 @@ namespace SM
             this.rightFlowLayoutPanel.Location = new System.Drawing.Point(0, 0);
             this.rightFlowLayoutPanel.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.rightFlowLayoutPanel.Name = "rightFlowLayoutPanel";
-            this.rightFlowLayoutPanel.Size = new System.Drawing.Size(959, 34);
+            this.rightFlowLayoutPanel.Size = new System.Drawing.Size(832, 34);
             this.rightFlowLayoutPanel.TabIndex = 1;
             // 
             // textBoxStatus2
             // 
             this.textBoxStatus2.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.textBoxStatus2.Location = new System.Drawing.Point(60, 1077);
+            this.textBoxStatus2.Location = new System.Drawing.Point(60, 878);
             this.textBoxStatus2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBoxStatus2.Multiline = true;
             this.textBoxStatus2.Name = "textBoxStatus2";
             this.textBoxStatus2.ReadOnly = true;
-            this.textBoxStatus2.Size = new System.Drawing.Size(959, 34);
+            this.textBoxStatus2.Size = new System.Drawing.Size(832, 34);
             this.textBoxStatus2.TabIndex = 0;
             this.textBoxStatus2.TabStop = false;
             // 
@@ -359,17 +434,18 @@ namespace SM
             this.panel3.Location = new System.Drawing.Point(0, 0);
             this.panel3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(60, 1111);
+            this.panel3.Size = new System.Drawing.Size(60, 912);
             this.panel3.TabIndex = 0;
             // 
             // flowLayoutPanel1
             // 
             this.flowLayoutPanel1.Controls.Add(this.buttonService);
             this.flowLayoutPanel1.Controls.Add(this.buttonProcess);
+            this.flowLayoutPanel1.Controls.Add(this.buttonMedia);
             this.flowLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.flowLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.flowLayoutPanel1.Name = "flowLayoutPanel1";
-            this.flowLayoutPanel1.Size = new System.Drawing.Size(60, 1111);
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(60, 912);
             this.flowLayoutPanel1.TabIndex = 1;
             // 
             // buttonService
@@ -402,16 +478,28 @@ namespace SM
             this.logRichTextBox.Location = new System.Drawing.Point(0, 0);
             this.logRichTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.logRichTextBox.Name = "logRichTextBox";
-            this.logRichTextBox.Size = new System.Drawing.Size(1978, 179);
+            this.logRichTextBox.Size = new System.Drawing.Size(1732, 147);
             this.logRichTextBox.TabIndex = 0;
             this.logRichTextBox.TabStop = false;
             this.logRichTextBox.Text = "";
+            // 
+            // buttonMedia
+            // 
+            this.buttonMedia.AutoSize = true;
+            this.buttonMedia.Dock = System.Windows.Forms.DockStyle.Top;
+            this.buttonMedia.Location = new System.Drawing.Point(3, 105);
+            this.buttonMedia.Name = "buttonMedia";
+            this.buttonMedia.Size = new System.Drawing.Size(76, 45);
+            this.buttonMedia.TabIndex = 2;
+            this.buttonMedia.Text = "Media";
+            this.buttonMedia.UseVisualStyleBackColor = true;
+            this.buttonMedia.Click += new System.EventHandler(this.buttonMedia_Click);
             // 
             // SystemManager
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1978, 1292);
+            this.ClientSize = new System.Drawing.Size(1732, 1061);
             this.Controls.Add(this.splitContainer2);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "SystemManager";
@@ -427,9 +515,13 @@ namespace SM
             this.splitContainer1.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.tabControl1.ResumeLayout(false);
+            this.tabPage1.ResumeLayout(false);
             this.leftPathPanel.ResumeLayout(false);
             this.leftPathPanel.PerformLayout();
             this.leftVolumePanel.ResumeLayout(false);
+            this.tabControl2.ResumeLayout(false);
+            this.tabPage3.ResumeLayout(false);
             this.rightPathPanel.ResumeLayout(false);
             this.rightPathPanel.PerformLayout();
             this.rightVolumePanel.ResumeLayout(false);
@@ -445,23 +537,11 @@ namespace SM
         private System.Windows.Forms.SplitContainer splitContainer2;
         private System.Windows.Forms.RichTextBox logRichTextBox;
         private System.Windows.Forms.SplitContainer splitContainer1;
-        private ListViewEx leftListView;
-        private System.Windows.Forms.ColumnHeader LeftColumnHeaderName;
-        private System.Windows.Forms.ColumnHeader LeftColumnHeaderExt;
-        private System.Windows.Forms.ColumnHeader LeftColumnHeaderSize;
-        private System.Windows.Forms.ColumnHeader LeftColumnHeaderDate;
-        private System.Windows.Forms.ColumnHeader LeftColumnHeaderAttr;
         private System.Windows.Forms.Panel leftPathPanel;
         private System.Windows.Forms.Label leftPathLabel;
         private System.Windows.Forms.Panel leftVolumePanel;
         private System.Windows.Forms.FlowLayoutPanel leftFlowLayoutPanel;
         private System.Windows.Forms.TextBox textBoxStatus1;
-        private ListViewEx rightListView;
-        private System.Windows.Forms.ColumnHeader columnHeader1;
-        private System.Windows.Forms.ColumnHeader columnHeader2;
-        private System.Windows.Forms.ColumnHeader columnHeader3;
-        private System.Windows.Forms.ColumnHeader columnHeader4;
-        private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.Panel rightPathPanel;
         private System.Windows.Forms.Label rightPathLabel;
         private System.Windows.Forms.Panel rightVolumePanel;
@@ -471,6 +551,25 @@ namespace SM
         private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
         private System.Windows.Forms.Button buttonService;
         private System.Windows.Forms.Button buttonProcess;
+        private System.Windows.Forms.TabControl tabControl1;
+        private System.Windows.Forms.TabPage tabPage1;
+        private ListViewEx leftListView;
+        private System.Windows.Forms.ColumnHeader LeftColumnHeaderName;
+        private System.Windows.Forms.ColumnHeader LeftColumnHeaderExt;
+        private System.Windows.Forms.ColumnHeader LeftColumnHeaderSize;
+        private System.Windows.Forms.ColumnHeader LeftColumnHeaderDate;
+        private System.Windows.Forms.ColumnHeader LeftColumnHeaderAttr;
+        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabControl tabControl2;
+        private System.Windows.Forms.TabPage tabPage3;
+        private ListViewEx rightListView;
+        private System.Windows.Forms.ColumnHeader columnHeader1;
+        private System.Windows.Forms.ColumnHeader columnHeader2;
+        private System.Windows.Forms.ColumnHeader columnHeader3;
+        private System.Windows.Forms.ColumnHeader columnHeader4;
+        private System.Windows.Forms.ColumnHeader columnHeader5;
+        private System.Windows.Forms.TabPage tabPage4;
+        private System.Windows.Forms.Button buttonMedia;
     }
 }
 

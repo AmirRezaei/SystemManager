@@ -10,6 +10,7 @@ using PluginInterface;
 using ProcessPlugin;
 using ServicePlugin;
 using Helper;
+using MediaMetaTagPlugin;
 using SM.Controls;
 using SM.EventTypes;
 
@@ -17,7 +18,7 @@ namespace SM
 {
     public partial class SystemManager : Form
     {
-        private Subscription<global::SM.EventTypes.CopyDialogEventArgs> copyDialogSubscription;
+        private Subscription<global::SM.EventTypes.CopyDialogEventArgs> _copyDialogSubscription;
         private static NLog.Logger _logger;
 
         //private void ErrorArgs(Event.LogMessageArgs errorArgs)
@@ -204,6 +205,11 @@ namespace SM
             CreateDriveButtons();
             //Init logger after form has been loaded and to ensure logRichTextBox is initiated.
             _logger = NLog.LogManager.GetCurrentClassLogger();
+
+            // Force resize splitContainer1 to 50%
+            splitContainer1.Panel1Collapsed = false;
+            splitContainer1.Panel2Collapsed = false;
+            splitContainer1.SplitterDistance = (int)(splitContainer1.ClientSize.Width * 0.50);
         }
 
         private void CreateDriveButtons()
@@ -359,7 +365,7 @@ namespace SM
 
         private void StartCopyOperation()
         {
-            copyDialogSubscription = global::Helper.EventAggregator.EventAggregator.Instance.Subscribe<global::SM.EventTypes.CopyDialogEventArgs>(this.HandleCopyDialogResults);
+            _copyDialogSubscription = global::Helper.EventAggregator.EventAggregator.Instance.Subscribe<global::SM.EventTypes.CopyDialogEventArgs>(this.HandleCopyDialogResults);
 
             FormComfirmCopy formCopy = new FormComfirmCopy();
             formCopy.ShowDialog();
@@ -376,7 +382,7 @@ namespace SM
                 CancellationToken cancellationToken = new CancellationToken(false);
                 await GetDirectoryAggregatorInfoAsync(selectedDirectories, cancellationToken).ConfigureAwait(true);
 
-                global::Helper.EventAggregator.EventAggregator.Instance.UnSubscribe(copyDialogSubscription);
+                global::Helper.EventAggregator.EventAggregator.Instance.UnSubscribe(_copyDialogSubscription);
 
                 global::SM.EventTypes.CopyProgressEventArgs copyProgressEventArgs = new global::SM.EventTypes.CopyProgressEventArgs();
                 copyProgressEventArgs.OperationStatus = global::SM.EventTypes.OperationStatus.Initiated;
@@ -474,6 +480,19 @@ namespace SM
             }
 
             listView.ResumeLayout();
+        }
+
+        private void buttonMedia_Click(object sender, EventArgs e)
+        {
+            Entity entity0 = currentListView.Tag as Entity;
+
+            var itemContainer = new MediaMetaTag(entity0.Path) ;
+
+            var entities = itemContainer.GetEntities();
+            var entity = entities.FirstOrDefault();
+
+            UpdateColumnHeaders(currentListView, entity?.Attributes.Keys.ToArray());
+            UpdateListBox(leftListView, itemContainer);
         }
     }
 }

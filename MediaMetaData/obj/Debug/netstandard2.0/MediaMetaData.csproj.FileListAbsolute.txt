@@ -1,0 +1,12 @@
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\MediaMetaData\bin\Debug\netstandard2.0\MediaMetaData.deps.json
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\MediaMetaData\bin\Debug\netstandard2.0\MediaMetaData.dll
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\MediaMetaData\obj\Debug\netstandard2.0\MediaMetaData.AssemblyInfoInputs.cache
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\MediaMetaData\obj\Debug\netstandard2.0\MediaMetaData.AssemblyInfo.cs
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\MediaMetaData\obj\Debug\netstandard2.0\MediaMetaData.csprojAssemblyReference.cache
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\MediaMetaData\bin\Debug\netstandard2.0\MediaMetaData.pdb
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\MediaMetaData\bin\Debug\netstandard2.0\PluginInterface.dll
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\MediaMetaData\bin\Debug\netstandard2.0\PluginInterface.pdb
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\MediaMetaData\obj\Debug\netstandard2.0\MediaMetaData.csproj.CopyComplete
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\MediaMetaData\obj\Debug\netstandard2.0\MediaMetaData.dll
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\MediaMetaData\obj\Debug\netstandard2.0\MediaMetaData.pdb
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\MediaMetaData\obj\Debug\netstandard2.0\MediaMetaData.csproj.CoreCompileInputs.cache

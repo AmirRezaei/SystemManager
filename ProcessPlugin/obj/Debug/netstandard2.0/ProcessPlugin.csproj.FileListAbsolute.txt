@@ -1,12 +1,12 @@
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ProcessPlugin\bin\Debug\netstandard2.0\ProcessPlugin.deps.json
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ProcessPlugin\bin\Debug\netstandard2.0\ProcessPlugin.dll
-C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ProcessPlugin\obj\Debug\netstandard2.0\ProcessPlugin.AssemblyInfoInputs.cache
-C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ProcessPlugin\obj\Debug\netstandard2.0\ProcessPlugin.AssemblyInfo.cs
-C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ProcessPlugin\obj\Debug\netstandard2.0\ProcessPlugin.csprojAssemblyReference.cache
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ProcessPlugin\bin\Debug\netstandard2.0\ProcessPlugin.pdb
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ProcessPlugin\bin\Debug\netstandard2.0\PluginInterface.dll
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ProcessPlugin\bin\Debug\netstandard2.0\PluginInterface.pdb
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ProcessPlugin\obj\Debug\netstandard2.0\ProcessPlugin.csprojAssemblyReference.cache
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ProcessPlugin\obj\Debug\netstandard2.0\ProcessPlugin.AssemblyInfoInputs.cache
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ProcessPlugin\obj\Debug\netstandard2.0\ProcessPlugin.AssemblyInfo.cs
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ProcessPlugin\obj\Debug\netstandard2.0\ProcessPlugin.csproj.CoreCompileInputs.cache
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ProcessPlugin\obj\Debug\netstandard2.0\ProcessPlugin.csproj.CopyComplete
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ProcessPlugin\obj\Debug\netstandard2.0\ProcessPlugin.dll
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ProcessPlugin\obj\Debug\netstandard2.0\ProcessPlugin.pdb
-C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\ProcessPlugin\obj\Debug\netstandard2.0\ProcessPlugin.csproj.CoreCompileInputs.cache
