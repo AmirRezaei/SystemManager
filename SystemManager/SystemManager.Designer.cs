@@ -40,12 +40,6 @@ namespace SM
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
-            this.leftListView = new SM.Controls.ListViewEx();
-            this.LeftColumnHeaderName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LeftColumnHeaderExt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LeftColumnHeaderSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LeftColumnHeaderDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.LeftColumnHeaderAttr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.leftPathPanel = new System.Windows.Forms.Panel();
             this.leftPathLabel = new System.Windows.Forms.Label();
@@ -54,12 +48,6 @@ namespace SM
             this.textBoxStatus1 = new System.Windows.Forms.TextBox();
             this.tabControl2 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
-            this.rightListView = new SM.Controls.ListViewEx();
-            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.rightPathPanel = new System.Windows.Forms.Panel();
             this.rightPathLabel = new System.Windows.Forms.Label();
@@ -72,6 +60,20 @@ namespace SM
             this.buttonProcess = new System.Windows.Forms.Button();
             this.buttonMedia = new System.Windows.Forms.Button();
             this.logRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.cmdRichTextBox = new System.Windows.Forms.RichTextBox();
+            this.textBoxFilter = new System.Windows.Forms.TextBox();
+            this.leftListView = new SM.Controls.ListViewEx();
+            this.LeftColumnHeaderName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LeftColumnHeaderExt = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LeftColumnHeaderSize = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LeftColumnHeaderDate = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.LeftColumnHeaderAttr = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.rightListView = new SM.Controls.ListViewEx();
+            this.columnHeader1 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader2 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader3 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader4 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnHeader5 = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -114,6 +116,7 @@ namespace SM
             // splitContainer2.Panel2
             // 
             this.splitContainer2.Panel2.Controls.Add(this.logRichTextBox);
+            this.splitContainer2.Panel2.Controls.Add(this.cmdRichTextBox);
             this.splitContainer2.Size = new System.Drawing.Size(1732, 1061);
             this.splitContainer2.SplitterDistance = 912;
             this.splitContainer2.SplitterWidth = 2;
@@ -163,6 +166,7 @@ namespace SM
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.textBoxFilter);
             this.tabPage1.Controls.Add(this.leftListView);
             this.tabPage1.Location = new System.Drawing.Point(4, 29);
             this.tabPage1.Name = "tabPage1";
@@ -171,65 +175,6 @@ namespace SM
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "tabPage1";
             this.tabPage1.UseVisualStyleBackColor = true;
-            // 
-            // leftListView
-            // 
-            this.leftListView.CheckBoxes = true;
-            this.leftListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.LeftColumnHeaderName,
-            this.LeftColumnHeaderExt,
-            this.LeftColumnHeaderSize,
-            this.LeftColumnHeaderDate,
-            this.LeftColumnHeaderAttr});
-            this.leftListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.leftListView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.leftListView.FullRowSelect = true;
-            this.leftListView.GridLines = true;
-            this.leftListView.HideSelection = false;
-            listViewItem1.StateImageIndex = 0;
-            this.leftListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
-            listViewItem1});
-            this.leftListView.LabelEdit = true;
-            this.leftListView.LabelWrap = false;
-            this.leftListView.Location = new System.Drawing.Point(3, 3);
-            this.leftListView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.leftListView.Name = "leftListView";
-            this.leftListView.Size = new System.Drawing.Size(816, 769);
-            this.leftListView.SmallImageList = this.imageList1;
-            this.leftListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.leftListView.TabIndex = 2;
-            this.leftListView.UseCompatibleStateImageBehavior = false;
-            this.leftListView.View = System.Windows.Forms.View.Details;
-            // 
-            // LeftColumnHeaderName
-            // 
-            this.LeftColumnHeaderName.Name = "LeftColumnHeaderName";
-            this.LeftColumnHeaderName.Text = "Name";
-            this.LeftColumnHeaderName.Width = 612;
-            // 
-            // LeftColumnHeaderExt
-            // 
-            this.LeftColumnHeaderExt.Name = "LeftColumnHeaderExt";
-            this.LeftColumnHeaderExt.Text = "Ext";
-            this.LeftColumnHeaderExt.Width = 45;
-            // 
-            // LeftColumnHeaderSize
-            // 
-            this.LeftColumnHeaderSize.Name = "LeftColumnHeaderSize";
-            this.LeftColumnHeaderSize.Text = "Size";
-            this.LeftColumnHeaderSize.Width = 90;
-            // 
-            // LeftColumnHeaderDate
-            // 
-            this.LeftColumnHeaderDate.Name = "LeftColumnHeaderDate";
-            this.LeftColumnHeaderDate.Text = "Date";
-            this.LeftColumnHeaderDate.Width = 108;
-            // 
-            // LeftColumnHeaderAttr
-            // 
-            this.LeftColumnHeaderAttr.Name = "LeftColumnHeaderAttr";
-            this.LeftColumnHeaderAttr.Text = "Attr";
-            this.LeftColumnHeaderAttr.Width = 45;
             // 
             // tabPage2
             // 
@@ -314,56 +259,6 @@ namespace SM
             this.tabPage3.TabIndex = 0;
             this.tabPage3.Text = "tabPage3";
             this.tabPage3.UseVisualStyleBackColor = true;
-            // 
-            // rightListView
-            // 
-            this.rightListView.CheckBoxes = true;
-            this.rightListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
-            this.columnHeader1,
-            this.columnHeader2,
-            this.columnHeader3,
-            this.columnHeader4,
-            this.columnHeader5});
-            this.rightListView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.rightListView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.rightListView.FullRowSelect = true;
-            this.rightListView.GridLines = true;
-            this.rightListView.HideSelection = false;
-            this.rightListView.LabelEdit = true;
-            this.rightListView.LabelWrap = false;
-            this.rightListView.Location = new System.Drawing.Point(3, 3);
-            this.rightListView.Name = "rightListView";
-            this.rightListView.Size = new System.Drawing.Size(818, 769);
-            this.rightListView.SmallImageList = this.imageList1;
-            this.rightListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
-            this.rightListView.TabIndex = 3;
-            this.rightListView.UseCompatibleStateImageBehavior = false;
-            this.rightListView.View = System.Windows.Forms.View.Details;
-            // 
-            // columnHeader1
-            // 
-            this.columnHeader1.Text = "Name";
-            this.columnHeader1.Width = 612;
-            // 
-            // columnHeader2
-            // 
-            this.columnHeader2.Text = "Ext";
-            this.columnHeader2.Width = 45;
-            // 
-            // columnHeader3
-            // 
-            this.columnHeader3.Text = "Size";
-            this.columnHeader3.Width = 90;
-            // 
-            // columnHeader4
-            // 
-            this.columnHeader4.Text = "Date";
-            this.columnHeader4.Width = 108;
-            // 
-            // columnHeader5
-            // 
-            this.columnHeader5.Text = "Attr";
-            this.columnHeader5.Width = 45;
             // 
             // tabPage4
             // 
@@ -487,13 +382,140 @@ namespace SM
             // logRichTextBox
             // 
             this.logRichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logRichTextBox.Location = new System.Drawing.Point(0, 0);
+            this.logRichTextBox.Location = new System.Drawing.Point(0, 34);
             this.logRichTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.logRichTextBox.Name = "logRichTextBox";
-            this.logRichTextBox.Size = new System.Drawing.Size(1732, 147);
+            this.logRichTextBox.Size = new System.Drawing.Size(1732, 113);
             this.logRichTextBox.TabIndex = 0;
             this.logRichTextBox.TabStop = false;
             this.logRichTextBox.Text = "";
+            // 
+            // cmdRichTextBox
+            // 
+            this.cmdRichTextBox.Dock = System.Windows.Forms.DockStyle.Top;
+            this.cmdRichTextBox.Location = new System.Drawing.Point(0, 0);
+            this.cmdRichTextBox.Multiline = false;
+            this.cmdRichTextBox.Name = "cmdRichTextBox";
+            this.cmdRichTextBox.Size = new System.Drawing.Size(1732, 34);
+            this.cmdRichTextBox.TabIndex = 1;
+            this.cmdRichTextBox.Text = "";
+            // 
+            // textBoxFilter
+            // 
+            this.textBoxFilter.Location = new System.Drawing.Point(25, 698);
+            this.textBoxFilter.Name = "textBoxFilter";
+            this.textBoxFilter.Size = new System.Drawing.Size(399, 26);
+            this.textBoxFilter.TabIndex = 3;
+            this.textBoxFilter.Visible = false;
+            // 
+            // leftListView
+            // 
+            this.leftListView.CheckBoxes = true;
+            this.leftListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.LeftColumnHeaderName,
+            this.LeftColumnHeaderExt,
+            this.LeftColumnHeaderSize,
+            this.LeftColumnHeaderDate,
+            this.LeftColumnHeaderAttr});
+            this.leftListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.leftListView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.leftListView.FullRowSelect = true;
+            this.leftListView.GridLines = true;
+            this.leftListView.HideSelection = false;
+            listViewItem1.StateImageIndex = 0;
+            this.leftListView.Items.AddRange(new System.Windows.Forms.ListViewItem[] {
+            listViewItem1});
+            this.leftListView.LabelEdit = true;
+            this.leftListView.LabelWrap = false;
+            this.leftListView.Location = new System.Drawing.Point(3, 3);
+            this.leftListView.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.leftListView.Name = "leftListView";
+            this.leftListView.Size = new System.Drawing.Size(816, 769);
+            this.leftListView.SmallImageList = this.imageList1;
+            this.leftListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.leftListView.TabIndex = 2;
+            this.leftListView.UseCompatibleStateImageBehavior = false;
+            this.leftListView.View = System.Windows.Forms.View.Details;
+            // 
+            // LeftColumnHeaderName
+            // 
+            this.LeftColumnHeaderName.Name = "LeftColumnHeaderName";
+            this.LeftColumnHeaderName.Text = "Name";
+            this.LeftColumnHeaderName.Width = 612;
+            // 
+            // LeftColumnHeaderExt
+            // 
+            this.LeftColumnHeaderExt.Name = "LeftColumnHeaderExt";
+            this.LeftColumnHeaderExt.Text = "Ext";
+            this.LeftColumnHeaderExt.Width = 45;
+            // 
+            // LeftColumnHeaderSize
+            // 
+            this.LeftColumnHeaderSize.Name = "LeftColumnHeaderSize";
+            this.LeftColumnHeaderSize.Text = "Size";
+            this.LeftColumnHeaderSize.Width = 90;
+            // 
+            // LeftColumnHeaderDate
+            // 
+            this.LeftColumnHeaderDate.Name = "LeftColumnHeaderDate";
+            this.LeftColumnHeaderDate.Text = "Date";
+            this.LeftColumnHeaderDate.Width = 108;
+            // 
+            // LeftColumnHeaderAttr
+            // 
+            this.LeftColumnHeaderAttr.Name = "LeftColumnHeaderAttr";
+            this.LeftColumnHeaderAttr.Text = "Attr";
+            this.LeftColumnHeaderAttr.Width = 45;
+            // 
+            // rightListView
+            // 
+            this.rightListView.CheckBoxes = true;
+            this.rightListView.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
+            this.columnHeader1,
+            this.columnHeader2,
+            this.columnHeader3,
+            this.columnHeader4,
+            this.columnHeader5});
+            this.rightListView.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.rightListView.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.rightListView.FullRowSelect = true;
+            this.rightListView.GridLines = true;
+            this.rightListView.HideSelection = false;
+            this.rightListView.LabelEdit = true;
+            this.rightListView.LabelWrap = false;
+            this.rightListView.Location = new System.Drawing.Point(3, 3);
+            this.rightListView.Name = "rightListView";
+            this.rightListView.Size = new System.Drawing.Size(818, 769);
+            this.rightListView.SmallImageList = this.imageList1;
+            this.rightListView.Sorting = System.Windows.Forms.SortOrder.Ascending;
+            this.rightListView.TabIndex = 3;
+            this.rightListView.UseCompatibleStateImageBehavior = false;
+            this.rightListView.View = System.Windows.Forms.View.Details;
+            // 
+            // columnHeader1
+            // 
+            this.columnHeader1.Text = "Name";
+            this.columnHeader1.Width = 612;
+            // 
+            // columnHeader2
+            // 
+            this.columnHeader2.Text = "Ext";
+            this.columnHeader2.Width = 45;
+            // 
+            // columnHeader3
+            // 
+            this.columnHeader3.Text = "Size";
+            this.columnHeader3.Width = 90;
+            // 
+            // columnHeader4
+            // 
+            this.columnHeader4.Text = "Date";
+            this.columnHeader4.Width = 108;
+            // 
+            // columnHeader5
+            // 
+            this.columnHeader5.Text = "Attr";
+            this.columnHeader5.Width = 45;
             // 
             // SystemManager
             // 
@@ -517,6 +539,7 @@ namespace SM
             this.splitContainer1.ResumeLayout(false);
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
+            this.tabPage1.PerformLayout();
             this.leftPathPanel.ResumeLayout(false);
             this.leftPathPanel.PerformLayout();
             this.leftVolumePanel.ResumeLayout(false);
@@ -570,6 +593,8 @@ namespace SM
         private System.Windows.Forms.ColumnHeader columnHeader5;
         private System.Windows.Forms.TabPage tabPage4;
         private System.Windows.Forms.Button buttonMedia;
+        private System.Windows.Forms.RichTextBox cmdRichTextBox;
+        private System.Windows.Forms.TextBox textBoxFilter;
     }
 }
 

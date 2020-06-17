@@ -22,7 +22,7 @@ namespace SM.Controls
             InitializeComponent();
             DoubleBuffered = true; // no flicking
             ListViewItemSorter = new ListViewColumnSorter();
-
+            
             Resize += ListViewEx_Resize;
             ColumnClick += ListView_ColumnClick;
             KeyDown += ListView_KeyDown;
