@@ -11,15 +11,15 @@ namespace SM.Controls
         /// <summary>
         /// Specifies the column to be sorted
         /// </summary>
-        private int ColumnToSort;
+        private int _columnToSort;
         /// <summary>
         /// Specifies the order in which to sort (i.e. 'Ascending').
         /// </summary>
-        private SortOrder OrderOfSort;
+        private SortOrder _orderOfSort;
         /// <summary>
         /// Case insensitive comparer object
         /// </summary>
-        private CaseInsensitiveComparer ObjectCompare;
+        private readonly CaseInsensitiveComparer _objectCompare;
 
         /// <summary>
         /// Class constructor.  Initializes various elements
@@ -27,13 +27,13 @@ namespace SM.Controls
         public ListViewColumnSorter()
         {
             // Initialize the column to '0'
-            ColumnToSort = 0;
+            _columnToSort = 0;
 
             // Initialize the sort order to 'none'
-            OrderOfSort = SortOrder.None;
+            _orderOfSort = SortOrder.None;
 
             // Initialize the CaseInsensitiveComparer object
-            ObjectCompare = new CaseInsensitiveComparer();
+            _objectCompare = new CaseInsensitiveComparer();
         }
 
         /// <summary>
@@ -44,32 +44,28 @@ namespace SM.Controls
         /// <returns>The result of the comparison. "0" if equal, negative if 'x' is less than 'y' and positive if 'x' is greater than 'y'</returns>
         public int Compare(object x, object y)
         {
-            int compareResult;
-            ListViewItem listviewX, listviewY;
-
             // Cast the objects to be compared to ListViewItem objects
-            listviewX = (ListViewItem)x;
-            listviewY = (ListViewItem)y;
+            var listViewX = x as ListViewItem;
+            var listViewY = y as ListViewItem;
 
             // Compare the two items
-            compareResult = ObjectCompare.Compare(listviewX.SubItems[ColumnToSort].Text, listviewY.SubItems[ColumnToSort].Text);
+            int compareResult = _objectCompare.Compare(listViewX.SubItems[_columnToSort].Text, listViewY.SubItems[_columnToSort].Text);
 
             // Calculate correct return value based on object comparison
-            if (OrderOfSort == SortOrder.Ascending)
+            if (_orderOfSort == SortOrder.Ascending)
             {
                 // Ascending sort is selected, return normal result of compare operation
                 return compareResult;
             }
-            else if (OrderOfSort == SortOrder.Descending)
+
+            if (_orderOfSort == SortOrder.Descending)
             {
                 // Descending sort is selected, return negative result of compare operation
                 return (-compareResult);
             }
-            else
-            {
-                // Return '0' to indicate they are equal
-                return 0;
-            }
+
+            // Return '0' to indicate they are equal
+            return 0;
         }
 
         /// <summary>
@@ -77,14 +73,8 @@ namespace SM.Controls
         /// </summary>
         public int SortColumn
         {
-            set
-            {
-                ColumnToSort = value;
-            }
-            get
-            {
-                return ColumnToSort;
-            }
+            set => _columnToSort = value;
+            get => _columnToSort;
         }
 
         /// <summary>
@@ -92,14 +82,8 @@ namespace SM.Controls
         /// </summary>
         public SortOrder Order
         {
-            set
-            {
-                OrderOfSort = value;
-            }
-            get
-            {
-                return OrderOfSort;
-            }
+            set => _orderOfSort = value;
+            get => _orderOfSort;
         }
 
     }

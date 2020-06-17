@@ -79,6 +79,12 @@ namespace ServicePlugin
             return entities;
         }
 
-        public override Entity Parent => new ServiceContainer("");
+        public override IEnumerable<Entity> Seek(string path)
+        {
+            Path = path;
+            Parent = path;
+            Entities = GetEntities();
+            return Entities;
+        }
     }
 }

@@ -30,7 +30,6 @@
         {
             this.SuspendLayout();
             this.ResumeLayout(false);
-
         }
 
         #endregion

@@ -2,23 +2,43 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using Helper;
 using PluginInterface;
 
-namespace SM
+namespace FileSystemPlugin
 {
     public class FileSystemEntity : Entity
     {
-        public override Entity Parent { get; }
-        public FileSystemEntity(string directory) : base(directory)
+        public FileSystemEntity(string path) : base(path)
         {
-            DirectoryInfo directoryInfo = new DirectoryInfo(directory);
+            DirectoryInfo directoryInfo = new DirectoryInfo(path);
             Name = "[" + directoryInfo.Name + "]"; // Name must also be set. The Name is used as in ListView for locating specific ListViewItems[name as key]. This is due to ListView uses ListViewItem.Name as key!
-
-            Parent = directoryInfo.Parent == null ? this : new FileSystemEntity(directoryInfo.Parent.FullName);
         }
 
-        public IEnumerable<Entity> Entities { get; set; }
+        public override IEnumerable<Entity> Seek(string path)
+        {
+            Previous = new FileSystemEntity(Path);
+            DirectoryInfo directoryInfo = new DirectoryInfo(path);
+
+            if (directoryInfo.Parent == null)
+            {
+                IsDirectory = true;
+                IsRoot = true;
+                Parent = Path;
+                Path = path;
+            }
+            else
+            {
+                IsDirectory = true;
+                IsRoot = false;
+                Parent = directoryInfo.Parent.FullName;
+                Path = directoryInfo.FullName;
+            }
+            Name = "[" + directoryInfo.Name + "]"; // Name must also be set. The Name is used as in ListView for locating specific ListViewItems[name as key]. This is due to ListView uses ListViewItem.Name as key!
+            Entities = GetEntities();
+            return Entities;
+        }
 
         public override IEnumerable<Entity> GetEntities()
         {
@@ -27,24 +47,15 @@ namespace SM
             try
             {
                 if (!IsRoot)
-                    entities.Add(new FileSystemEntity(Parent.Path) { Name = "[..]", IsDirectory = true, IsParent = true });
+                    entities.Add(new FileSystemEntity(Parent) { Name = "[..]", IsDirectory = true, IsParent = true });
 
-                //try
-                //{
                 var directoryInfo = new DirectoryInfo(Path);
                 foreach (DirectoryInfo dirInfo in directoryInfo.EnumerateDirectories())
                 {
-                    FileSystemEntity fileSystemContainer = new FileSystemEntity(dirInfo.FullName)
-                    {
-                        Name = "[" + dirInfo.Name + "]",
-                        IsDirectory = true
-                    };
+                    FileSystemEntity fileSystemContainer = new FileSystemEntity(dirInfo.FullName) { IsDirectory = true };
                     fileSystemContainer.Attributes.Add("Ext", "");
                     fileSystemContainer.Attributes.Add("Size", "");
                     fileSystemContainer.Attributes.Add("Date", dirInfo.CreationTime.ToString(CultureInfo.InvariantCulture));
-                    //fileSystemContainer.Attributes.Add("");
-                    //fileSystemContainer.Attributes.Add("<DIR>");
-                    //fileSystemContainer.Attributes.Add(dirInfo.CreationTime.ToString(CultureInfo.InvariantCulture));
                     string attribute = "";
                     attribute += dirInfo.Attributes.HasFlag(FileAttributes.ReadOnly) ? "R" : "-";
                     attribute += dirInfo.Attributes.HasFlag(FileAttributes.Archive) ? "A" : "-";
@@ -53,25 +64,15 @@ namespace SM
                     fileSystemContainer.Attributes.Add("Attr", attribute);
 
                     entities.Add(fileSystemContainer);
-                    //yield return fileSystemItemContainer;
                 }
 
                 foreach (FileInfo fileInfo in directoryInfo.EnumerateFiles())
                 {
-                    FileSystemEntity fileSystemContainer = new FileSystemEntity(fileInfo.FullName)
-                    {
-                        Name = fileInfo.Name,
-                        IsDirectory = false
-                    };
-
+                    FileSystemEntity fileSystemContainer = new FileSystemEntity(fileInfo.FullName) { IsDirectory = false };
+                    fileSystemContainer.Name = fileInfo.Name.Remove(fileInfo.Name.Length - fileInfo.Extension.Length);
                     fileSystemContainer.Attributes.Add("Ex", fileInfo.Extension.TrimStart('.'));
                     fileSystemContainer.Attributes.Add("Size", fileInfo.Length.ToHumanReadable());
                     fileSystemContainer.Attributes.Add("Date", fileInfo.CreationTime.ToString(CultureInfo.InvariantCulture));
-
-                    //fileSystemContainer.Attributes.Add(fileInfo.Extension.TrimStart('.'));
-                    //fileSystemContainer.Attributes.Add(fileInfo.Length.ToHumanReadable());
-                    //fileSystemContainer.Attributes.Add(fileInfo.CreationTime.ToString(CultureInfo.InvariantCulture));
-
                     string attribute = "";
                     attribute += fileInfo.Attributes.HasFlag(FileAttributes.ReadOnly) ? "R" : "-";
                     attribute += fileInfo.Attributes.HasFlag(FileAttributes.Archive) ? "A" : "-";
@@ -80,7 +81,6 @@ namespace SM
                     fileSystemContainer.Attributes.Add("Attr", attribute);
 
                     entities.Add(fileSystemContainer);
-                    //yield return fileSystemItem;
                 }
             }
             catch (Exception ex)

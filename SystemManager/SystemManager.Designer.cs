@@ -70,8 +70,8 @@ namespace SM
             this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.buttonService = new System.Windows.Forms.Button();
             this.buttonProcess = new System.Windows.Forms.Button();
-            this.logRichTextBox = new System.Windows.Forms.RichTextBox();
             this.buttonMedia = new System.Windows.Forms.Button();
+            this.logRichTextBox = new System.Windows.Forms.RichTextBox();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).BeginInit();
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
@@ -472,17 +472,6 @@ namespace SM
             this.buttonProcess.UseVisualStyleBackColor = true;
             this.buttonProcess.Click += new System.EventHandler(this.buttonProcess_Click);
             // 
-            // logRichTextBox
-            // 
-            this.logRichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.logRichTextBox.Location = new System.Drawing.Point(0, 0);
-            this.logRichTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.logRichTextBox.Name = "logRichTextBox";
-            this.logRichTextBox.Size = new System.Drawing.Size(1732, 147);
-            this.logRichTextBox.TabIndex = 0;
-            this.logRichTextBox.TabStop = false;
-            this.logRichTextBox.Text = "";
-            // 
             // buttonMedia
             // 
             this.buttonMedia.AutoSize = true;
@@ -494,6 +483,17 @@ namespace SM
             this.buttonMedia.Text = "Media";
             this.buttonMedia.UseVisualStyleBackColor = true;
             this.buttonMedia.Click += new System.EventHandler(this.buttonMedia_Click);
+            // 
+            // logRichTextBox
+            // 
+            this.logRichTextBox.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.logRichTextBox.Location = new System.Drawing.Point(0, 0);
+            this.logRichTextBox.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.logRichTextBox.Name = "logRichTextBox";
+            this.logRichTextBox.Size = new System.Drawing.Size(1732, 147);
+            this.logRichTextBox.TabIndex = 0;
+            this.logRichTextBox.TabStop = false;
+            this.logRichTextBox.Text = "";
             // 
             // SystemManager
             // 

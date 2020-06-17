@@ -1,45 +1,29 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using PluginInterface;
 
 namespace SM.Controls
 {
     public partial class ListViewEx : ListView
     {
+        // removes dotted line around focused item
+        //public bool ShowFocusCues { get; set; }
         public ListViewItem FocusedItemKeyDown;
-        private int boxWidth = 16;
-        private int leftIconOffset => SmallImageList.ImageSize.Width + boxWidth;
+        private int _boxWidth = 16;
+        private int LeftIconOffset => SmallImageList.ImageSize.Width + _boxWidth;
+        ListViewItem _oldListViewItem;
 
-        public bool IsUpdating { get; private set; }
-
-        //protected override void OnNotifyMessage(Message m)
-        //{
-        //    //Filter out the WM_ERASEBKGND message
-        //    if (m.Msg != 0x14)
-        //    {
-        //        base.OnNotifyMessage(m);
-        //    }
-        //}
         public ListViewEx()
         {
-
-            ////Activate double buffering
-            //this.SetStyle(ControlStyles.OptimizedDoubleBuffer | ControlStyles.AllPaintingInWmPaint, true);
-
-            ////Enable the OnNotifyMessage event so we get a chance to filter out 
-            //// Windows messages before they get to the form's WndProc
-            //this.SetStyle(ControlStyles.EnableNotifyMessage, true);
-
-
             InitializeComponent();
+            DoubleBuffered = true; // no flicking
             ListViewItemSorter = new ListViewColumnSorter();
-            //DrawItem += ListView_DrawItem;
-            //DrawColumnHeader += ListView_DrawColumnHeader;
-            //DrawSubItem += ListView_DrawSubItem;
-            Resize += ListViewEx_Resize;
 
-            //leftListView.Invalidated += ListView_Invalidated;
-            //ColumnWidthChanged += ListView_ColumnWidthChanged;
+            Resize += ListViewEx_Resize;
             ColumnClick += ListView_ColumnClick;
             KeyDown += ListView_KeyDown;
             KeyUp += ListView_KeyUp;
@@ -50,21 +34,31 @@ namespace SM.Controls
             };
             //base.Invalidated += ((sender, e) => { IsUpdating = true; });
             //base.Validated += ((sender, e) => { IsUpdating = false; });
+            base.MouseMove += ListView_MouseMove;
+            base.MouseDown += ListView_MouseDown;
+            base.ItemChecked += (sender, args) =>
+            {
+                var listView = sender as ListView;
+                if (args.Item.Checked)
+                    args.Item.ForeColor = Color.Red;
+                else
+                    args.Item.ForeColor = Color.Black;
+            };
         }
 
         private void ListViewEx_Resize(object sender, System.EventArgs e)
         {
-            return;
-            
-            if (sender is ListViewEx listView)
-            {
-                int x = listView.Width / 100;
-                listView.Columns[0].Width = x * 68;
-                listView.Columns[1].Width = x * 5;
-                listView.Columns[2].Width = x * 10;
-                listView.Columns[3].Width = x * 12;
-                listView.Columns[4].Width = x * 5;
-            }
+            //UpdateColumnHeaders();
+
+            //if (sender is ListViewEx listView)
+            //{
+            //    int x = listView.Width / 100;
+            //    listView.Columns[0].Width = x * 68;
+            //    listView.Columns[1].Width = x * 5;
+            //    listView.Columns[2].Width = x * 10;
+            //    listView.Columns[3].Width = x * 12;
+            //    listView.Columns[4].Width = x * 5;
+            //}
         }
         // Draws the backgrounds for entire ListView items.
         private void ListView_DrawItem(object sender, DrawListViewItemEventArgs e)
@@ -110,13 +104,13 @@ namespace SM.Controls
             {
                 if (e.Item.Checked)
                 {
-                    e.Graphics.FillRectangle(Brushes.Black, e.Bounds.X, e.Bounds.Y, e.Bounds.X + boxWidth, e.Bounds.Y);
+                    e.Graphics.FillRectangle(Brushes.Black, e.Bounds.X, e.Bounds.Y, e.Bounds.X + _boxWidth, e.Bounds.Y);
                 }
                 else if (!e.Item.Checked)
                 {
-                    e.Graphics.FillRectangle(Brushes.White, e.Bounds.X, e.Bounds.Y, e.Bounds.X + boxWidth, e.Bounds.Y);
+                    e.Graphics.FillRectangle(Brushes.White, e.Bounds.X, e.Bounds.Y, e.Bounds.X + _boxWidth, e.Bounds.Y);
                 }
-                e.Graphics.DrawImage(SmallImageList.Images[e.Item.ImageIndex], new Point(e.Bounds.Location.X + boxWidth, e.Bounds.Y));
+                e.Graphics.DrawImage(SmallImageList.Images[e.Item.ImageIndex], new Point(e.Bounds.Location.X + _boxWidth, e.Bounds.Y));
             }
         }
 
@@ -152,11 +146,11 @@ namespace SM.Controls
                 {
                     if (e.Item.Checked)
                     {
-                        e.Graphics.DrawString(e.SubItem.Text, listView.Font, Brushes.Red, new Rectangle(e.Bounds.X + leftIconOffset, e.Bounds.Y, e.Bounds.Width - leftIconOffset, e.Bounds.Height), sf);
+                        e.Graphics.DrawString(e.SubItem.Text, listView.Font, Brushes.Red, new Rectangle(e.Bounds.X + LeftIconOffset, e.Bounds.Y, e.Bounds.Width - LeftIconOffset, e.Bounds.Height), sf);
                     }
                     else
                     {
-                        e.Graphics.DrawString(e.SubItem.Text, listView.Font, Brushes.Black, new Rectangle(e.Bounds.X + leftIconOffset, e.Bounds.Y, e.Bounds.Width - leftIconOffset, e.Bounds.Height), sf);
+                        e.Graphics.DrawString(e.SubItem.Text, listView.Font, Brushes.Black, new Rectangle(e.Bounds.X + LeftIconOffset, e.Bounds.Y, e.Bounds.Width - LeftIconOffset, e.Bounds.Height), sf);
                     }
                 }
             }
@@ -212,19 +206,12 @@ namespace SM.Controls
         {
             ListView listView = sender as ListView;
             ListViewColumnSorter listViewItemSorter = listView.ListViewItemSorter as ListViewColumnSorter;
-
+            
             // Determine if clicked column is already the column that is being sorted.
             if (e.Column == listViewItemSorter.SortColumn)
             {
                 // Reverse the current sort direction for this column.
-                if (listViewItemSorter.Order == SortOrder.Ascending)
-                {
-                    listViewItemSorter.Order = SortOrder.Descending;
-                }
-                else
-                {
-                    listViewItemSorter.Order = SortOrder.Ascending;
-                }
+                listViewItemSorter.Order = listViewItemSorter.Order == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
             }
             else
             {
@@ -235,10 +222,6 @@ namespace SM.Controls
 
             // Perform the sort with these new sort options.
             listView.Sort();
-
-            //ItemContainer itemContainer = listView.Tag as ItemContainer;
-            //UpdateListBox(listView, itemContainer, e.Column);
-            //Logger.Debug(sender);
         }
 
         private void ListView_KeyDown(object sender, KeyEventArgs e)
@@ -313,6 +296,67 @@ namespace SM.Controls
                 }
             }
         }
+
+        private void ListView_MouseDown(object sender, MouseEventArgs e)
+        {
+            ListView listView = sender as ListView;
+
+            if (e.Button == MouseButtons.Right)
+            {
+                ListViewHitTestInfo info = listView.HitTest(e.X, e.Y);
+                ListViewItem item = info.Item;
+
+                if (item != null && item != _oldListViewItem)
+                {
+                    item.Checked = !item.Checked;
+                    _oldListViewItem = item;
+                }
+            }
+        }
+
+        private void ListView_MouseMove(object sender, MouseEventArgs e)
+        {
+            ListView listView = sender as ListView;
+            ListViewHitTestInfo info = listView.HitTest(e.X, e.Y);
+            ListViewItem item = info.Item;
+
+            if (e.Button == MouseButtons.Right)
+            {
+                if (item != null && item != _oldListViewItem)
+                {
+                    if (_oldListViewItem != null)
+                        _oldListViewItem.Selected = false;
+
+                    _oldListViewItem = item;
+                    item.Checked = !item.Checked;
+                    item.Selected = true;
+                }
+            }
+        }
+        public void UpdateColumnHeaders(IEnumerable<Header> headers)
+        {
+            SuspendLayout();
+            //ListViewItemSorter  = null;
+
+            int columns = Columns.Count;
+            for (int i = 0; i < columns; i++)
+            {
+                Columns.RemoveAt(0);
+            }
+
+            // Add new columns
+            foreach (Header header in headers)
+            {
+                var columnHeader = new ColumnHeader();
+                columnHeader.Width = (int)(ClientSize.Width * header.Width / 100.0f);
+                columnHeader.Text = header.Name;
+                Columns.Add(columnHeader);
+            }
+
+            //ListViewItemSorter = new ListViewColumnSorter();
+            ResumeLayout();
+        }
+
         protected override void OnPaint(PaintEventArgs pe)
         {
             base.OnPaint(pe);
