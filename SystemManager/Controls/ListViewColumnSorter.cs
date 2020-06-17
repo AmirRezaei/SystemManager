@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Windows.Forms;
+using PluginInterface;
 
 namespace SM.Controls
 {
@@ -8,14 +9,6 @@ namespace SM.Controls
     /// </summary>
     public class ListViewColumnSorter : IComparer
     {
-        /// <summary>
-        /// Specifies the column to be sorted
-        /// </summary>
-        private int _columnToSort;
-        /// <summary>
-        /// Specifies the order in which to sort (i.e. 'Ascending').
-        /// </summary>
-        private SortOrder _orderOfSort;
         /// <summary>
         /// Case insensitive comparer object
         /// </summary>
@@ -27,10 +20,10 @@ namespace SM.Controls
         public ListViewColumnSorter()
         {
             // Initialize the column to '0'
-            _columnToSort = 0;
+            //_columnToSort = 0;
 
             // Initialize the sort order to 'none'
-            _orderOfSort = SortOrder.None;
+            SortOrder = SortOrder.None;
 
             // Initialize the CaseInsensitiveComparer object
             _objectCompare = new CaseInsensitiveComparer();
@@ -48,17 +41,22 @@ namespace SM.Controls
             var listViewX = x as ListViewItem;
             var listViewY = y as ListViewItem;
 
+            // Do not sort Directory, only files
+            var entity = listViewX.Tag as Entity;
+            if (entity.IsDirectory)
+                return 0;
+
             // Compare the two items
-            int compareResult = _objectCompare.Compare(listViewX.SubItems[_columnToSort].Text, listViewY.SubItems[_columnToSort].Text);
+            int compareResult = _objectCompare.Compare(listViewX.SubItems[SortColumn].Text, listViewY.SubItems[SortColumn].Text);
 
             // Calculate correct return value based on object comparison
-            if (_orderOfSort == SortOrder.Ascending)
+            if (SortOrder == SortOrder.Ascending)
             {
                 // Ascending sort is selected, return normal result of compare operation
                 return compareResult;
             }
 
-            if (_orderOfSort == SortOrder.Descending)
+            if (SortOrder == SortOrder.Descending)
             {
                 // Descending sort is selected, return negative result of compare operation
                 return (-compareResult);
@@ -71,20 +69,11 @@ namespace SM.Controls
         /// <summary>
         /// Gets or sets the number of the column to which to apply the sorting operation (Defaults to '0').
         /// </summary>
-        public int SortColumn
-        {
-            set => _columnToSort = value;
-            get => _columnToSort;
-        }
+        public int SortColumn { get; set; }
 
         /// <summary>
         /// Gets or sets the order of sorting to apply (for example, 'Ascending' or 'Descending').
         /// </summary>
-        public SortOrder Order
-        {
-            set => _orderOfSort = value;
-            get => _orderOfSort;
-        }
-
+        public SortOrder SortOrder { get; set; }
     }
 }

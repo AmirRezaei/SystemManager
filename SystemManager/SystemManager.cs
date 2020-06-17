@@ -226,9 +226,9 @@ namespace SM
 
             // GetItems ones. Each GetItems trigger filesystem get files and directory.
 
-            var dirs = plugin.Entity.Entities.Where(x => x != null && x.IsDirectory);
-            var files = plugin.Entity.Entities.Where(x => x != null && x.IsFile).ToList();
-            files.Sort((a, b) => String.Compare(a.Attributes.Keys.ToArray()[sortIndex], b.Attributes.Keys.ToArray()[sortIndex], StringComparison.Ordinal));
+            IEnumerable<Entity> dirs = plugin.Entity.Entities.Where(x => x != null && x.IsDirectory);
+            List<Entity> files = plugin.Entity.Entities.Where(x => x != null && x.IsFile).ToList();
+            //files.Sort((a, b) => String.Compare(a.Attributes.Keys.ToArray()[sortIndex], b.Attributes.Keys.ToArray()[sortIndex], StringComparison.Ordinal));
 
             var entities = new List<Entity>();
             entities.AddRange(dirs);

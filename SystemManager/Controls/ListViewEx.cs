@@ -204,24 +204,24 @@ namespace SM.Controls
 
         private void ListView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
-            ListView listView = sender as ListView;
-            ListViewColumnSorter listViewItemSorter = listView.ListViewItemSorter as ListViewColumnSorter;
-            
+            //ListView listView = sender as ListView;
+            ListViewColumnSorter listViewItemSorter = ListViewItemSorter as ListViewColumnSorter;
+
             // Determine if clicked column is already the column that is being sorted.
             if (e.Column == listViewItemSorter.SortColumn)
             {
                 // Reverse the current sort direction for this column.
-                listViewItemSorter.Order = listViewItemSorter.Order == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
+                listViewItemSorter.SortOrder = listViewItemSorter.SortOrder == SortOrder.Ascending ? SortOrder.Descending : SortOrder.Ascending;
             }
             else
             {
                 // Set the column number that is to be sorted; default to ascending.
                 listViewItemSorter.SortColumn = e.Column;
-                listViewItemSorter.Order = SortOrder.Ascending;
+                listViewItemSorter.SortOrder = SortOrder.Ascending;
             }
 
-            // Perform the sort with these new sort options.
-            listView.Sort();
+            //// Perform the sort with these new sort options.
+            Sort();
         }
 
         private void ListView_KeyDown(object sender, KeyEventArgs e)

@@ -73,6 +73,7 @@
     <Compile Include="Controls\ListViewEx.Designer.cs">
       <DependentUpon>ListViewEx.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\ListViewItemComparer.cs" />
     <Compile Include="EventTypes\CopyEventArgs.cs" />
     <Compile Include="FormComfirmCopy.cs">
       <SubType>Form</SubType>
