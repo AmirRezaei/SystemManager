@@ -7,7 +7,7 @@ namespace SM.Controls
     /// <summary>
     /// This class is an implementation of the 'IComparer' interface.
     /// </summary>
-    public class ListViewColumnSorter : IComparer
+    public class ListViewItemComparer : IComparer
     {
         /// <summary>
         /// Case insensitive comparer object
@@ -17,7 +17,7 @@ namespace SM.Controls
         /// <summary>
         /// Class constructor.  Initializes various elements
         /// </summary>
-        public ListViewColumnSorter()
+        public ListViewItemComparer()
         {
             // Initialize the column to '0'
             //_columnToSort = 0;

@@ -67,14 +67,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Class1.cs" />
-    <Compile Include="Controls\Class1.cs" />
+    <Compile Include="Controls\EntityConverter.cs" />
     <Compile Include="Controls\ListViewEx.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Controls\ListViewEx.Designer.cs">
       <DependentUpon>ListViewEx.cs</DependentUpon>
     </Compile>
-    <Compile Include="Controls\ListViewItemComparer.cs" />
     <Compile Include="EventTypes\CopyEventArgs.cs" />
     <Compile Include="FormComfirmCopy.cs">
       <SubType>Form</SubType>

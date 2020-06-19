@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using PluginInterface;
 
@@ -21,8 +22,8 @@ namespace SM.Controls
         {
             InitializeComponent();
             DoubleBuffered = true; // no flicking
-            ListViewItemSorter = new ListViewColumnSorter();
-            
+            ListViewItemSorter = new ListViewItemComparer();
+
             Resize += ListViewEx_Resize;
             ColumnClick += ListView_ColumnClick;
             KeyDown += ListView_KeyDown;
@@ -32,6 +33,7 @@ namespace SM.Controls
             {
                 //IsUpdating = false;
             };
+
             //base.Invalidated += ((sender, e) => { IsUpdating = true; });
             //base.Validated += ((sender, e) => { IsUpdating = false; });
             base.MouseMove += ListView_MouseMove;
@@ -205,7 +207,7 @@ namespace SM.Controls
         private void ListView_ColumnClick(object sender, ColumnClickEventArgs e)
         {
             //ListView listView = sender as ListView;
-            ListViewColumnSorter listViewItemSorter = ListViewItemSorter as ListViewColumnSorter;
+            ListViewItemComparer listViewItemSorter = ListViewItemSorter as ListViewItemComparer;
 
             // Determine if clicked column is already the column that is being sorted.
             if (e.Column == listViewItemSorter.SortColumn)
@@ -270,7 +272,7 @@ namespace SM.Controls
         {
             var listView = sender as ListViewEx;
 
-            // Check selected items when Shift Up/Down
+            // Check selected items when Shift PageUp or PageDown is pressed
             if ((Control.ModifierKeys & Keys.Shift) == Keys.Shift)
             {
                 if (e.KeyCode == Keys.PageDown || e.KeyCode == Keys.PageUp)
@@ -357,9 +359,108 @@ namespace SM.Controls
             ResumeLayout();
         }
 
-        protected override void OnPaint(PaintEventArgs pe)
+        public void ClearSelections()
         {
-            base.OnPaint(pe);
+            foreach (ListViewItem listViewItem in Items)
+            {
+                listViewItem.Selected = false;
+            }
+        }
+
+        /// <summary>
+        /// Move the selected focused item up or down.
+        /// </summary>
+        /// <param name="index">Number of step to move selection from current position. Negative=Up, Positive=Down</param>
+        /// <returns>True is successful.</returns>
+        public bool ChangeSelectedItem(int index)
+        {
+            int currentIndex = FocusedItem.Index;
+            if ((index < 0 && currentIndex + index > 0) || (index > 0 && currentIndex + index < Items.Count))
+            {
+                ClearSelections();
+                FocusedItem = Items[currentIndex + index];
+                Items[currentIndex + index].Selected = true;
+                EnsureVisible(currentIndex + index);
+                return true;
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Move the selected focused up or down based on index and item search.
+        /// </summary>
+        /// <param name="index"> Index>0 searches next items upward. Index<0 searches next item downward.</param>
+        /// <param name="search">Search string for match with beginning of the item text.</param>
+        /// <param name="trimChars"></param>
+        /// <returns>True is successful.</returns>
+        public bool ChangeSelectedItem(int index, string search, char[] trimChars = null)
+        {
+            index = index > 0 ? Math.Max(index, 1) : Math.Min(index, -1);
+            int currentIndex = FocusedItem.Index;
+
+            if (index > 0 && currentIndex + index < Items.Count)// look downward in the list
+            {
+                for (int i = currentIndex + 1; i < Items.Count; i++)
+                {
+                    if (Items[i].Text.TrimStart(trimChars).StartsWith(search, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        ClearSelections();
+                        FocusedItem = Items[i];
+                        Items[i].Selected = true;
+                        EnsureVisible(i);
+                        return true;
+                    }
+                }
+            }
+            else if (index < 0 && currentIndex + index > 0) // look upward in the list
+            {
+                for (int i = currentIndex - 1; i > 0; i--)
+                {
+                    if (Items[i].Text.TrimStart(trimChars).StartsWith(search, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        ClearSelections();
+                        FocusedItem = Items[i];
+                        Items[i].Selected = true;
+                        EnsureVisible(i);
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// Find first ListViewItem.Text  matching search string.
+        /// </summary>
+        /// <param name="search"></param>
+        /// <param name="startIndex">Starting index for search.</param>
+        /// <param name="trimChars"></param>
+        /// <returns></returns>
+        public ListViewItem FindItemWithTextEx(string search, int startIndex, char[] trimChars = null)
+        {
+            if (startIndex < Items.Count)
+            {
+                for (int i = startIndex; i < Items.Count; i++)
+                {
+                    if (Items[i].Text.TrimStart(trimChars).StartsWith(search, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        return Items[i];
+                    }
+                }
+            }
+
+            if (startIndex > 0)
+            {
+                for (int i = 0; i < startIndex; i++)
+                {
+                    if (Items[i].Text.TrimStart(trimChars).StartsWith(search, StringComparison.CurrentCultureIgnoreCase))
+                    {
+                        return Items[i];
+                    }
+                }
+            }
+
+            return null;
         }
     }
 }

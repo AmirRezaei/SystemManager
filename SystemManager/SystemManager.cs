@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -22,9 +24,7 @@ namespace SM
         private Subscription<global::SM.EventTypes.CopyDialogEventArgs> _copyDialogSubscription;
         private static NLog.Logger _logger;
 
-        private SenderSide senderSide;
         private ListViewEx _currentListView;
-        private TextBox _currentStatusTextBox;
         public enum SenderSide
         {
             Left,
@@ -46,6 +46,15 @@ namespace SM
             Text = Application.ProductName + @" " + Application.ProductVersion;
 
             textBoxFilter.TextChanged += TextBoxFilter_TextChanged;
+            textBoxFilter.PreviewKeyDown += (o, args) =>
+            {
+                //if (args.KeyCode >= Keys.A && args.KeyCode < Keys.Z)
+                //if (args.IsInputKey)
+                //{
+                //textBoxFilter.Text += "X";//char.ConvertFromUtf32(args.KeyValue);
+                //}
+            };
+
             textBoxFilter.KeyDown += (o, args) =>
             {
                 if (args.KeyCode == Keys.Escape)
@@ -54,7 +63,29 @@ namespace SM
                     textBoxFilter.Clear(); // clear after Hide(), otherwise TextChange event will trigger.
                     _currentListView.Focus();
                     args.Handled = true;
+                    return;
                 }
+
+                if (args.KeyCode == Keys.Enter)
+                {
+                    textBoxFilter.Hide();
+                    textBoxFilter.Clear(); // clear after Hide(), otherwise TextChange event will trigger.
+                    _currentListView.Focus();
+                    args.Handled = true;
+                    return;
+                }
+                if (args.KeyCode == Keys.Up)
+                {
+                    _currentListView.ChangeSelectedItem(-1, textBoxFilter.Text, new[] { '[' });
+                    args.Handled = true;
+                }
+                else if (args.KeyCode == Keys.Down)
+                {
+                    _currentListView.ChangeSelectedItem(1, textBoxFilter.Text, new[] { '[' });
+                    args.Handled = true;
+                }
+
+                args.Handled = true;
             };
         }
 
@@ -63,11 +94,15 @@ namespace SM
             TextBox textBox = sender as TextBox;
             Plugin plugin = _currentListView.Tag as Plugin;
 
-            if(!textBox.Visible)
+            if (!textBox.Visible)
                 return;
 
             // Call FindItemWithText with the contents of the textbox.
-            ListViewItem foundItem = _currentListView.FindItemWithText(textBox.Text, false, 1, true);
+            //ListViewItem foundItem = _currentListView.FindItemWithText(textBox.Text, false, 0, true);
+
+            int index = _currentListView.FocusedItem.Index;
+            ListViewItem foundItem = _currentListView.FindItemWithTextEx(textBox.Text, index, new[] { '[' });
+
             if (foundItem != null)
             {
                 foreach (ListViewItem listViewItem in _currentListView.Items)
@@ -92,12 +127,15 @@ namespace SM
 
             try
             {
-                if (e.Alt)
+                if (e.Alt)// Filter textBox
                 {
-                    // Filter textBox
+                    textBoxFilter.BringToFront();
+                    textBoxFilter.Left = splitContainer2.Panel2.Left;
+                    textBoxFilter.Top = splitContainer2.Panel2.Top;
                     textBoxFilter.Show();
                     textBoxFilter.Focus();
                     e.Handled = true;
+                    return;
                 }
 
                 switch (e.KeyCode)
@@ -109,6 +147,8 @@ namespace SM
                             if (entity.IsDirectory)
                             {
                                 plugin.Entity.Seek(entity.Path);
+                                if (plugin.Entity == null)
+                                    Debugger.Break();
                                 UpdateListBox(listView, plugin);
                             }
                             break;
@@ -172,11 +212,11 @@ namespace SM
 
             if (_currentListView.Name.Contains("left"))
             {
-                _currentStatusTextBox = textBoxStatus1;
+                //_currentStatusTextBox = textBoxStatus1;
             }
             else
             {
-                _currentStatusTextBox = textBoxStatus2;
+                //_currentStatusTextBox = textBoxStatus2;
             }
         }
 
@@ -193,6 +233,7 @@ namespace SM
 
             //TODO fix active listView
             _currentListView = leftListView;
+            leftListView.Focus();
         }
 
         private void CreateDriveButtons()
@@ -239,8 +280,6 @@ namespace SM
             leftListView.Tag = fileSystemPlugin;
             leftListView.UpdateColumnHeaders(fileSystemPlugin.Headers);
             UpdateListBox(leftListView, fileSystemPlugin);
-
-            leftListView.Focus();
         }
 
         private void VolumeButton_Click(object sender, EventArgs e)
@@ -277,6 +316,8 @@ namespace SM
             //files.Sort((a, b) => String.Compare(a.Attributes.Keys.ToArray()[sortIndex], b.Attributes.Keys.ToArray()[sortIndex], StringComparison.Ordinal));
 
             var entities = new List<Entity>();
+            if (parent != null) //parent i null at root level
+                entities.Add(parent);
             entities.AddRange(dirs);
             entities.AddRange(files);
 
@@ -286,15 +327,9 @@ namespace SM
                 return;
 
             List<ListViewItem> listViewItems = new List<ListViewItem>();
-            foreach (Entity entity in entities.Where(x => !x.IsParent && x.Name.StartsWith(filter)))
+
+            foreach (Entity entity in entities.Where(x => x.IsParent || x.Name.StartsWith(filter)))
             {
-                //var listViewItem = new ListViewItem(entity.Name, 0)
-                //{
-                //    Tag = entity,
-                //    Text = entity.Name, // Name is used as key in ListViewItem, we are using Path on each item since it's unique
-                //    Name = entity.Path,
-                //    ImageIndex = entity.IsDirectory ? 0 : 1 // set correct image based on folder and file
-                //};
                 ListViewItem listViewItem = new ListViewItem().FromEntity(entity);
                 //Add extra column values such as dir, size attr
                 listViewItem.SubItems.AddRange(entity.Attributes.Values.ToArray());
