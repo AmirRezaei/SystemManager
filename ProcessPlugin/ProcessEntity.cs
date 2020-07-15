@@ -11,6 +11,15 @@ namespace ProcessPlugin
 {
     public class ProcessEntity : Entity
     {
+        private enum TagNames
+        {
+            Name,
+            Id,
+            WorkingSet64,
+            PagedSystemMemorySize64,
+            PagedMemorySize64,
+            TotalProcessorTime
+        }
         public ProcessEntity(string path) : base(path)
         {
             Path = path;
@@ -19,6 +28,14 @@ namespace ProcessPlugin
         {
             Path = path;
             Parent = "";
+
+            Tags.Add(new Tag(nameof(TagNames.Name), typeof(string), 50));
+            Tags.Add(new Tag(nameof(TagNames.Id), typeof(string), 10));
+            Tags.Add(new Tag(nameof(TagNames.WorkingSet64), typeof(long), 10));
+            Tags.Add(new Tag(nameof(TagNames.PagedSystemMemorySize64), typeof(long), 10));
+            Tags.Add(new Tag(nameof(TagNames.PagedMemorySize64), typeof(long), 10));
+            Tags.Add(new Tag(nameof(TagNames.TotalProcessorTime), typeof(DateTime), 10));
+
             Entities = GetEntities();
             return Entities;
         }
@@ -34,24 +51,6 @@ namespace ProcessPlugin
                 if (String.IsNullOrEmpty(Path))
                 {
                     Process[] processes = Process.GetProcesses();
-
-                    //foreach (Process process in processes)
-                    //{
-                    //    try
-                    //    {
-                    //        Entity entity = new ProcessEntity(process.Id.ToString());
-                    //        entity.IsDirectory = process.Threads.Count > 0;
-                    //        entity.Name = process.ProcessName;
-                    //        entity.Attributes.Add(nameof(process.Id), process.Id.ToString());
-                    //        entity.Attributes.Add(nameof(process.TotalProcessorTime), process.TotalProcessorTime.ToString());
-                    //        entities.Add(entity);
-                    //    }
-                    //    catch (Exception e)
-                    //    {
-                    //        Logger.Error(e.Message);
-                    //    }
-                    //} 
-
                     Parallel.ForEach(Process.GetProcesses(), process =>
                     {
                         try
@@ -59,11 +58,12 @@ namespace ProcessPlugin
                             Entity entity = new ProcessEntity(process.Id.ToString());
                             entity.IsDirectory = process.Threads.Count > 0;
                             entity.Name = process.ProcessName;
-                            entity.Attributes.Add(nameof(process.Id), process.Id.ToString());
-                            entity.Attributes.Add(nameof(process.WorkingSet64), process.WorkingSet64.ToString());
-                            entity.Attributes.Add(nameof(process.PagedSystemMemorySize64), process.PagedSystemMemorySize64.ToString());
-                            entity.Attributes.Add(nameof(process.PagedMemorySize64), process.PagedMemorySize64.ToString());
-                            entity.Attributes.Add(nameof(process.TotalProcessorTime), process.TotalProcessorTime.ToString());
+
+                            entity.Values.Add(nameof(TagNames.Id), process.Id.ToString());
+                            entity.Values.Add(nameof(TagNames.WorkingSet64), process.WorkingSet64.ToString());
+                            entity.Values.Add(nameof(TagNames.PagedSystemMemorySize64), process.PagedSystemMemorySize64.ToString());
+                            entity.Values.Add(nameof(TagNames.PagedMemorySize64), process.PagedMemorySize64.ToString());
+                            entity.Values.Add(nameof(TagNames.TotalProcessorTime), process.TotalProcessorTime.ToString());
                             entities.Add(entity);
                         }
                         catch (Exception e)
@@ -87,11 +87,11 @@ namespace ProcessPlugin
                                 entity.IsDirectory = false;
                                 entity.IsRoot = false;
 
-                                entity.Attributes.Add(nameof(processThread.Id), processThread.Id.ToString());
-                                entity.Attributes.Add("1", "");
-                                entity.Attributes.Add("2", "");
-                                entity.Attributes.Add("3", "");
-                                entity.Attributes.Add(nameof(processThread.TotalProcessorTime), processThread.TotalProcessorTime.ToString());
+                                entity.Values.Add(nameof(TagNames.Id), processThread.Id.ToString());
+                                entity.Values.Add(nameof(TagNames.WorkingSet64), "");
+                                entity.Values.Add(nameof(TagNames.PagedSystemMemorySize64), "");
+                                entity.Values.Add(nameof(TagNames.PagedMemorySize64), "");
+                                entity.Values.Add(nameof(TagNames.TotalProcessorTime), processThread.TotalProcessorTime.ToString());
                                 entities.Add(entity);
                             }
                             catch (Exception e)

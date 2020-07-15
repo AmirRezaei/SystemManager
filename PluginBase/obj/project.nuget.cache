@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "7qhWRXK38j9upALGnB8BaaFLK0F2W3kDgGzxOJRzA03BrX09aeDokSe+WbLgEV5SnqFqv+NRW1IvTZfD5yMenQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\itkom\\Documents\\01 - Dev\\GitHub\\SystemManager\\PluginBase\\PluginBase.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\itkom\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Users\\itkom\\.nuget\\packages\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

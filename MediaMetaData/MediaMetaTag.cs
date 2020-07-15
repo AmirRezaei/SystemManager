@@ -18,16 +18,19 @@ namespace MediaMetaData
             base.Author = "Amir Rezaei";
             base.Description = "Reads attributes from images and videos.";
             base.Version = "1.0";
-            base.Headers.Add(new Header("Name", typeof(string), 65));
-            base.Headers.Add(new Header("Ext", typeof(string), 10));
-            base.Headers.Add(new Header("Size", typeof(long), 10));
-            base.Headers.Add(new Header("Date", typeof(DateTime), 15));
-            base.Headers.Add(new Header("Attr", typeof(string), 10));
             Entity = new MediaMetaTag(path);
         }
     }
     public class MediaMetaTag : Entity
     {
+        private enum TagNames
+        {
+            Name,
+            Ext,
+            Size,
+            Date,
+            Attr
+        }
         static FileType GetFileType(string file)
         {
             try
@@ -63,14 +66,14 @@ namespace MediaMetaData
                             var directory = directories.OfType<MetadataExtractor.Formats.Exif.ExifSubIfdDirectory>().FirstOrDefault();
                             if (directory == null)
                             {
-                                entity.Attributes.Add("Date Taken", "Missing");
+                                entity.Values.Add("Date Taken", "Missing");
                             }
                             else
                             {
                                 DateTime dateTime = directory.GetDateTime(ExifDirectoryBase.TagDateTimeOriginal);
-                                entity.Attributes.Add("Date Taken", dateTime.ToString(CultureInfo.InvariantCulture));
+                                entity.Values.Add("Date Taken", dateTime.ToString(CultureInfo.InvariantCulture));
                             }
-                            entity.Attributes.Add("Type", fileType.ToString());
+                            entity.Values.Add("Type", fileType.ToString());
 
                         }
                         else if ((fileType == FileType.Mp4 || fileType == FileType.QuickTime) && fileType != FileType.Unknown)
@@ -79,19 +82,19 @@ namespace MediaMetaData
 
                             if (directory == null)
                             {
-                                entity.Attributes.Add("Date Taken", "Missing");
+                                entity.Values.Add("Date Taken", "Missing");
                             }
                             else
                             {
                                 DateTime dateTime = directory.GetDateTime(MetadataExtractor.Formats.QuickTime.QuickTimeMovieHeaderDirectory.TagCreated);
-                                entity.Attributes.Add("Date Taken", dateTime.ToString(CultureInfo.InvariantCulture));
+                                entity.Values.Add("Date Taken", dateTime.ToString(CultureInfo.InvariantCulture));
                             }
-                            entity.Attributes.Add("Type", fileType.ToString());
+                            entity.Values.Add("Type", fileType.ToString());
                         }
                         else
                         {
-                            entity.Attributes.Add("Date Taken", "N/A");
-                            entity.Attributes.Add("Type", "Unknown");
+                            entity.Values.Add("Date Taken", "N/A");
+                            entity.Values.Add("Type", "Unknown");
                         }
 
                         entities.Add(entity);
@@ -123,8 +126,14 @@ namespace MediaMetaData
             Path = path;
             Parent = path;
 
+            Tags.Add(new PluginInterface.Tag(nameof(TagNames.Name), typeof(string), 65));
+            Tags.Add(new PluginInterface.Tag(nameof(TagNames.Ext), typeof(string), 10));
+            Tags.Add(new PluginInterface.Tag(nameof(TagNames.Size), typeof(long), 10));
+            Tags.Add(new PluginInterface.Tag(nameof(TagNames.Date), typeof(DateTime), 15));
+            Tags.Add(new PluginInterface.Tag(nameof(TagNames.Attr), typeof(string), 10));
+
             Entities = GetEntities();
-            return  Entities;
+            return Entities;
         }
 
 

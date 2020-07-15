@@ -1,0 +1,6 @@
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\PluginCore\bin\Debug\netcoreapp3.1\PluginCore.deps.json
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\PluginCore\bin\Debug\netcoreapp3.1\PluginCore.dll
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\PluginCore\obj\Debug\netcoreapp3.1\PluginCore.csprojAssemblyReference.cache
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\PluginCore\obj\Debug\netcoreapp3.1\PluginCore.AssemblyInfoInputs.cache
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\PluginCore\obj\Debug\netcoreapp3.1\PluginCore.AssemblyInfo.cs
+C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\PluginCore\obj\Debug\netcoreapp3.1\PluginCore.csproj.CoreCompileInputs.cache

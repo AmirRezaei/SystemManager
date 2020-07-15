@@ -12,7 +12,6 @@ namespace PluginInterface
         public string Version { get; set; }
         public string Author { get; set; }
 
-        public List<Header> Headers = new List<Header>();
         public Entity Entity { get; set; }
     }
 }

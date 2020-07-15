@@ -10,6 +10,14 @@ namespace FileSystemPlugin
 {
     public class FileSystemEntity : Entity
     {
+        private enum TagNames
+        { 
+            Name,
+            Ext,
+            Size,
+            Date,
+            Attr
+        }
         public FileSystemEntity(string path) : base(path)
         {
             DirectoryInfo directoryInfo = new DirectoryInfo(path);
@@ -36,6 +44,12 @@ namespace FileSystemPlugin
                 Path = directoryInfo.FullName;
             }
             Name = "[" + directoryInfo.Name + "]"; // Name must also be set. The Name is used as in ListView for locating specific ListViewItems[name as key]. This is due to ListView uses ListViewItem.Name as key!
+            Tags.Add(new Tag(nameof(TagNames.Name), typeof(string), 55));
+            Tags.Add(new Tag(nameof(TagNames.Ext), typeof(string), 10));
+            Tags.Add(new Tag(nameof(TagNames.Size), typeof(long), 10));
+            Tags.Add(new Tag(nameof(TagNames.Date), typeof(DateTime), 15));
+            Tags.Add(new Tag(nameof(TagNames.Attr),typeof(string), 10));
+
             Entities = GetEntities();
             return Entities;
         }
@@ -52,35 +66,35 @@ namespace FileSystemPlugin
                 var directoryInfo = new DirectoryInfo(Path);
                 foreach (DirectoryInfo dirInfo in directoryInfo.EnumerateDirectories())
                 {
-                    FileSystemEntity fileSystemContainer = new FileSystemEntity(dirInfo.FullName) { IsDirectory = true };
-                    fileSystemContainer.Attributes.Add("Ext", "");
-                    fileSystemContainer.Attributes.Add("Size", "");
-                    fileSystemContainer.Attributes.Add("Date", dirInfo.CreationTime.ToString(CultureInfo.InvariantCulture));
-                    string attribute = "";
-                    attribute += dirInfo.Attributes.HasFlag(FileAttributes.ReadOnly) ? "R" : "-";
-                    attribute += dirInfo.Attributes.HasFlag(FileAttributes.Archive) ? "A" : "-";
-                    attribute += dirInfo.Attributes.HasFlag(FileAttributes.Hidden) ? "H" : "-";
-                    attribute += dirInfo.Attributes.HasFlag(FileAttributes.System) ? "S" : "-";
-                    fileSystemContainer.Attributes.Add("Attr", attribute);
+                    FileSystemEntity fileSystemEntity = new FileSystemEntity(dirInfo.FullName) { IsDirectory = true };
+                    fileSystemEntity.Values.Add(nameof(TagNames.Ext), "");
+                    fileSystemEntity.Values.Add(nameof(TagNames.Size), "");
+                    fileSystemEntity.Values.Add(nameof(TagNames.Date), dirInfo.CreationTime.ToString(CultureInfo.InvariantCulture));
+                    string attributes = "";
+                    attributes += dirInfo.Attributes.HasFlag(FileAttributes.ReadOnly) ? "R" : "-";
+                    attributes += dirInfo.Attributes.HasFlag(FileAttributes.Archive) ? "A" : "-";
+                    attributes += dirInfo.Attributes.HasFlag(FileAttributes.Hidden) ? "H" : "-";
+                    attributes += dirInfo.Attributes.HasFlag(FileAttributes.System) ? "S" : "-";
+                    fileSystemEntity.Values.Add("Attr", attributes);
 
-                    entities.Add(fileSystemContainer);
+                    entities.Add(fileSystemEntity);
                 }
 
                 foreach (FileInfo fileInfo in directoryInfo.EnumerateFiles())
                 {
-                    FileSystemEntity fileSystemContainer = new FileSystemEntity(fileInfo.FullName) { IsDirectory = false };
-                    fileSystemContainer.Name = fileInfo.Name.Remove(fileInfo.Name.Length - fileInfo.Extension.Length);
-                    fileSystemContainer.Attributes.Add("Ex", fileInfo.Extension.TrimStart('.'));
-                    fileSystemContainer.Attributes.Add("Size", fileInfo.Length.ToHumanReadable());
-                    fileSystemContainer.Attributes.Add("Date", fileInfo.CreationTime.ToString(CultureInfo.InvariantCulture));
-                    string attribute = "";
-                    attribute += fileInfo.Attributes.HasFlag(FileAttributes.ReadOnly) ? "R" : "-";
-                    attribute += fileInfo.Attributes.HasFlag(FileAttributes.Archive) ? "A" : "-";
-                    attribute += fileInfo.Attributes.HasFlag(FileAttributes.Hidden) ? "H" : "-";
-                    attribute += fileInfo.Attributes.HasFlag(FileAttributes.System) ? "S" : "-";
-                    fileSystemContainer.Attributes.Add("Attr", attribute);
+                    FileSystemEntity fileSystemEntity = new FileSystemEntity(fileInfo.FullName) { IsDirectory = false };
+                    fileSystemEntity.Name = fileInfo.Name.Remove(fileInfo.Name.Length - fileInfo.Extension.Length);
+                    fileSystemEntity.Values.Add(nameof(TagNames.Ext), fileInfo.Extension.TrimStart('.'));
+                    fileSystemEntity.Values.Add(nameof(TagNames.Size), fileInfo.Length.ToHumanReadable());
+                    fileSystemEntity.Values.Add(nameof(TagNames.Date), fileInfo.CreationTime.ToString(CultureInfo.InvariantCulture));
+                    string attributes = "";
+                    attributes += fileInfo.Attributes.HasFlag(FileAttributes.ReadOnly) ? "R" : "-";
+                    attributes += fileInfo.Attributes.HasFlag(FileAttributes.Archive) ? "A" : "-";
+                    attributes += fileInfo.Attributes.HasFlag(FileAttributes.Hidden) ? "H" : "-";
+                    attributes += fileInfo.Attributes.HasFlag(FileAttributes.System) ? "S" : "-";
+                    fileSystemEntity.Values.Add("Attr", attributes);
 
-                    entities.Add(fileSystemContainer);
+                    entities.Add(fileSystemEntity);
                 }
             }
             catch (Exception ex)

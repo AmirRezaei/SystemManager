@@ -6,4 +6,3 @@ C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\Helper\obj\Debug\netstand
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\Helper\obj\Debug\netstandard2.0\Helper.csproj.CoreCompileInputs.cache
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\Helper\obj\Debug\netstandard2.0\Helper.dll
 C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\Helper\obj\Debug\netstandard2.0\Helper.pdb
-C:\Users\itkom\Documents\01 - Dev\GitHub\SystemManager\Helper\obj\Debug\netstandard2.0\Helper.csprojAssemblyReference.cache

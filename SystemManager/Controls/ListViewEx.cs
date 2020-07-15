@@ -335,7 +335,7 @@ namespace SM.Controls
                 }
             }
         }
-        public void UpdateColumnHeaders(IEnumerable<Header> headers)
+        public void UpdateColumnHeaders(IEnumerable<Tag> headers)
         {
             SuspendLayout();
             //ListViewItemSorter  = null;
@@ -347,7 +347,7 @@ namespace SM.Controls
             }
 
             // Add new columns
-            foreach (Header header in headers)
+            foreach (Tag header in headers)
             {
                 var columnHeader = new ColumnHeader();
                 columnHeader.Width = (int)(ClientSize.Width * header.Width / 100.0f);

@@ -4,9 +4,9 @@ using System.ComponentModel;
 namespace PluginInterface
 {
     /// <summary>
-    /// Directory
+    /// 
     /// </summary>
-    public class Header
+    public class Tag
     {
         public static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
@@ -15,7 +15,7 @@ namespace PluginInterface
 
         public int Width { get; set; }
 
-        public Header(string name, Type type, int width)
+        public Tag(string name, Type type, int width)
         {
             Name = name;
             Type = type;

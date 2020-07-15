@@ -1,0 +1,127 @@
+﻿@*@typeparam TItem*@
+
+<button class="btn btn-primary" @onclick="ButtonClick">Test</button>
+<span for="Header">Header: @Header</span>
+
+@*<div class="container-fluid" @onkeypress="OnKeyPress" @onclick="OnClick" @onkeydown="OnKeyDown">
+        <ul>
+            @foreach (var item in ListViewData)
+            {
+                <ui class="list-group-item @(item.IsActive ? "active":"")" @onclick="e=>OnItemClicked(e, item.Id)" >
+                    @item.Name
+                </ui>
+            }
+        </ul>
+    </div>*@
+<table id="example" class="table table-responsive table-hover table-sm table-borderless" @onkeypress="OnKeyPress" @onkeydown="OnKeyDown">
+    <thead class="thead-dark">
+        <tr>
+            <th style="width: 5%" scope="col">#</th>
+            <th style="width: 70%" scope="col">Name</th>
+            <th style="width: 20%" scope="col">Size</th>
+            <th style="width: 5%" scope="col">Attr</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in ListViewData)
+        {
+            <tr class="table-light" scope="row" @onkeydown="e=>OnKeyDownTr(e, item)">
+                <td><input class="form-check" type="checkbox"></td>
+                <td><input type="text" class="form-control form-control-sm" readonly value="@item.Name"></td>
+                <td><label class="col-form-label">@item.Size</label></td>
+                <td><label class="col-form-label">@item.Attr</label></td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@*@foreach (var item in ListViewData)
+    {
+    <button class="list-group-item list-group-item-action @(item.IsActive ? "active":"")" @onclick="e=>OnItemClicked(e, item.Id)">
+        @item.Name
+        <span class="badge badge-light badge-pill">@item.IsActive</span>
+    </button>
+    }*@
+
+
+@*<TelerikListView Data="@ListViewData" Width="700px" Pageable="true">
+        <HeaderTemplate>
+            <h2>Employee List</h2>
+        </HeaderTemplate>
+        <Template>
+            <div class="listview-item">
+                <h4>@context.Name</h4>
+                <h5>@context.Team</h5>
+            </div>
+        </Template>
+    </TelerikListView>*@
+
+@code {
+    List<FileData> ListViewData { get; set; } = Enumerable.Range(1, 25).Select(x => new FileData
+    {
+        Id = x,
+        Name = $"Name {x}",
+        Size = $"{1000000}",
+        Attr = $"ABCD",
+        IsActive = false,
+
+    }).ToList();
+
+    public class FileData
+    {
+        public int Id { get; set; }
+        public bool IsActive { get; set; }
+        public string Name { get; set; }
+        public string Size { get; set; }
+        public string Attr { get; set; }
+    }
+
+    //[Parameter]
+    //public bool Render { get; set; }
+
+    [Parameter]
+    public string Header { get; set; }
+
+    //[Parameter]
+    //public RenderFragment<TItem> ItemTemplate { get; set; }
+
+    //[Parameter]
+    //public IReadOnlyList<TItem> Items { get; set; }
+    private void OnClick(MouseEventArgs e)
+    {
+        Header = e.Button.ToString();
+    }
+
+    private void OnKeyPress(KeyboardEventArgs e)
+    {
+        Header = e.Code.ToString();
+    }
+
+    private void ButtonClick(MouseEventArgs e)
+    {
+        Header = "TEST Pressed";
+    }
+
+    private void OnKeyDown(KeyboardEventArgs e)
+    {
+        Header = e.Code;
+    }
+
+    private void OnItemClicked(MouseEventArgs e, int id)
+    {
+        ListViewData[id - 1].IsActive = !ListViewData[id - 1].IsActive;
+    }
+
+    private void OnMouseMove(MouseEventArgs e, in int id)
+    {
+        if (e.Button == 1)
+        {
+            ListViewData[id - 1].IsActive = !ListViewData[id - 1].IsActive;
+        }
+    }
+
+    private void OnKeyDownTr(KeyboardEventArgs keyboardEventArgs, FileData item)
+    {
+        var a = 1;
+    }
+}

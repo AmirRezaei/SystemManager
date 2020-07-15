@@ -15,7 +15,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "FileSystemPlugin", "FileSys
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Helper", "Helper\Helper.csproj", "{B3DEBDBC-5FDA-463F-A7D8-B02B89EF9A82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediaMetaData", "MediaMetaData\MediaMetaData.csproj", "{BA45C56E-C811-4A25-BE4F-631179F167A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MediaMetaData", "MediaMetaData\MediaMetaData.csproj", "{BA45C56E-C811-4A25-BE4F-631179F167A4}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp1.Server", "BlazorApp1\Server\BlazorApp1.Server.csproj", "{D3215616-A120-442E-9F56-ACBDC9520E9B}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp1.Client", "BlazorApp1\Client\BlazorApp1.Client.csproj", "{CBDECC64-8DEB-4048-9EFA-34C4860CC549}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BlazorApp1.Shared", "BlazorApp1\Shared\BlazorApp1.Shared.csproj", "{682C32C8-8C9E-45F9-89F5-3410854C8D10}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +57,18 @@ Global
 		{BA45C56E-C811-4A25-BE4F-631179F167A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BA45C56E-C811-4A25-BE4F-631179F167A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BA45C56E-C811-4A25-BE4F-631179F167A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D3215616-A120-442E-9F56-ACBDC9520E9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D3215616-A120-442E-9F56-ACBDC9520E9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D3215616-A120-442E-9F56-ACBDC9520E9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D3215616-A120-442E-9F56-ACBDC9520E9B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBDECC64-8DEB-4048-9EFA-34C4860CC549}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBDECC64-8DEB-4048-9EFA-34C4860CC549}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBDECC64-8DEB-4048-9EFA-34C4860CC549}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBDECC64-8DEB-4048-9EFA-34C4860CC549}.Release|Any CPU.Build.0 = Release|Any CPU
+		{682C32C8-8C9E-45F9-89F5-3410854C8D10}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{682C32C8-8C9E-45F9-89F5-3410854C8D10}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{682C32C8-8C9E-45F9-89F5-3410854C8D10}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{682C32C8-8C9E-45F9-89F5-3410854C8D10}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

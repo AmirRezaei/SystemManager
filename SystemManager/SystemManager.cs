@@ -196,8 +196,10 @@ namespace SM
                 PluginInterface.Plugin plugin = listView.Tag as PluginInterface.Plugin;
                 Entity entity = item.Tag as Entity;
                 if (entity.IsDirectory)
+                {
                     plugin.Entity.Seek(entity.Path);
-                UpdateListBox(listView, plugin);
+                    UpdateListBox(listView, plugin);
+                }
             }
             else
             {
@@ -274,11 +276,11 @@ namespace SM
             fileSystemPlugin.Entity.Seek(@"C:\");
 
             rightListView.Tag = fileSystemPlugin;
-            rightListView.UpdateColumnHeaders(fileSystemPlugin.Headers);
+            rightListView.UpdateColumnHeaders(fileSystemPlugin.Entity.Tags);
             UpdateListBox(rightListView, fileSystemPlugin);
 
             leftListView.Tag = fileSystemPlugin;
-            leftListView.UpdateColumnHeaders(fileSystemPlugin.Headers);
+            leftListView.UpdateColumnHeaders(fileSystemPlugin.Entity.Tags);
             UpdateListBox(leftListView, fileSystemPlugin);
         }
 
@@ -332,7 +334,7 @@ namespace SM
             {
                 ListViewItem listViewItem = new ListViewItem().FromEntity(entity);
                 //Add extra column values such as dir, size attr
-                listViewItem.SubItems.AddRange(entity.Attributes.Values.ToArray());
+                listViewItem.SubItems.AddRange(entity.Values.Values.Cast<string>().ToArray());
                 listViewItems.Add(listViewItem);
             }
 
@@ -436,12 +438,11 @@ namespace SM
 
         private void buttonService_Click(object sender, EventArgs e)
         {
-            //var servicePlugin = new ServicePlugin();
+            var servicePlugin = new ServicePlugin.Plugin("");
+            servicePlugin.Entity.Seek("");
 
-            //var entities = rootEntity.GetEntities();
-            //var entity = entities.FirstOrDefault();
-            //_currentListView.UpdateColumnHeaders(entity?.Attributes.Keys.ToArray());
-            //UpdateListBox(_currentListView, servicePlugin);
+            _currentListView.UpdateColumnHeaders(servicePlugin.Entity.Tags);
+            UpdateListBox(_currentListView, servicePlugin);
         }
 
         private void buttonProcess_Click(object sender, EventArgs e)
@@ -449,7 +450,7 @@ namespace SM
             var processPlugin = new ProcessPlugin.Plugin("");
             processPlugin.Entity.Seek("");
 
-            _currentListView.UpdateColumnHeaders(processPlugin.Headers);
+            _currentListView.UpdateColumnHeaders(processPlugin.Entity.Tags);
             UpdateListBox(_currentListView, processPlugin);
         }
 
@@ -457,15 +458,10 @@ namespace SM
         private void buttonMedia_Click(object sender, EventArgs e)
         {
             Entity currentEntity = _currentListView.Tag as Entity;
-            currentEntity.Seek("");
-
-            var rootEntity = new MediaMetaTag(currentEntity.Path);
-
-            //var entities = rootEntity.GetEntities();
-            //var entity = entities.FirstOrDefault();
-
-            //_currentListView.UpdateColumnHeaders(entity?.Attributes.Keys.ToArray());
-            //UpdateListBox(_currentListView, rootEntity);
+            MediaMetaTagPlugin mediaMetaTagPlugin = new MediaMetaTagPlugin(@"R:\1");
+            mediaMetaTagPlugin.Entity.Seek(@"R:\1");
+            _currentListView.UpdateColumnHeaders(mediaMetaTagPlugin.Entity.Tags);
+            UpdateListBox(_currentListView, mediaMetaTagPlugin);
         }
     }
 }

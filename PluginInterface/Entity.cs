@@ -14,7 +14,8 @@ namespace PluginInterface
         public bool IsFile => !IsDirectory;
 
         public bool IsParent { get; set; }
-        public Dictionary<string, string> Attributes = new Dictionary<string, string>();
+        public Dictionary<string, object> Values = new Dictionary<string, object>();
+        public List<Tag> Tags { get; set; } = new List<Tag>();
         public bool IsRoot { get; set; } // => Parent.Equals(this);
         public Entity NavigatedFrom { get; set; }
         public string Parent { get; set; }
